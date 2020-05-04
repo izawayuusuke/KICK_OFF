@@ -1,0 +1,20 @@
+<header>
+  <nav class="navbar navbar-expand navbar-dark bg-primary fixed-top">
+    <div class="container">
+      <%= link_to home_path do %>
+      <%= image_tag('title_logo.png', width: 80, class: "logo") %>
+      <% end %>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= link_to "search", root_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "notification", root_path %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "message", root_path %>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
