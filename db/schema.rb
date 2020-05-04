@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_04_011616) do
+ActiveRecord::Schema.define(version: 2020_05_04_053658) do
+
+  create_table "posts", force: :cascade do |t|
+    t.text "content"
+    t.string "image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -21,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_05_04_011616) do
     t.string "name"
     t.string "phone_number"
     t.string "address"
-    t.string "profile_image_id"
+    t.string "profile_image"
     t.text "introduction"
     t.boolean "admin", default: false
     t.integer "official_account", default: 0

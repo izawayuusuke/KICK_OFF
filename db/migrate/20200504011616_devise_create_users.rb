@@ -34,7 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :phone_number
       t.string :address
-      t.string :profile_image_id
+      t.string :profile_image
       t.text :introduction
       t.boolean :admin, default: false
       t.integer :official_account, default: false
