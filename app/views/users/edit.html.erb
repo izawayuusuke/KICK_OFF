@@ -1,6 +1,4 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
-<%= form_for @user do |f| %>
+<%= form_for @user, builder: FormHelper::FormCustomBuilder do |f| %>
 <div class="field">
   <% if @user.profile_image? %>
   <%= image_tag @user.profile_image.url, class: "profile-image" %>
@@ -13,7 +11,6 @@
 <div class="field">
   <%= f.label :name %>
   <%= f.text_field :name, class: "form-control" %>
-  <%= render 'devise/shared/form_error', model: @user, column: "name" %>
 </div>
 
 <div class="field">
