@@ -1,34 +1,40 @@
 module FormHelper
-  class FormCustomBuilder < ActionView::Helpers::FormBuilder
-    # エラーがある場合にエラーメッセージを表示する
-    def input_field_with_error(attribute, options={}, &block)
-      # 入力フォームと同じ属性のエラーメッセージを取得する
-      error_messages = @object.errors.full_messages_for(attribute)
+  class CustomFormBuilder < ActionView::Helpers::FormBuilder
+    # エラーメッセージを含んだ要素を生成する
+    def pick_errors(attribute)
+      return nil if @object.nil? || (messages = @object.errors.messages[attribute]).nil?
 
-      # エラーがある場合のみ、エラー用のHTMLにする
-      if error_messages.any?
-        options[:class] << "error-class"
-        error_contents = create_error_div(attribute, error_messages)
-      end
+      lis = messages.collect do |message|
+        %{<li>#{@object.errors.full_message(attribute, message)}</li>}
+      end.join
 
-      # 従来のフォーム + 生成されたエラーメッセージを返す
-      block.call + error_contents || ""
+      %{<ul class="errors">#{lis}</ul>}.html_safe
     end
 
-    # エラーメッセージのHTMLタグを作成する
-    def create_error_div(attribute, messages)
-      @template.content_tag(:div, class: "error-class") do
-        messages.each do |message|
-          @template.concat(@template.content_tag(:div, message))
-        end
-      end
-    end
-
-    # 既存のビューヘルパーメソッドをオーバーライド
+    # 既存のFormHelperをオーバーライドする
     def text_field(attribute, options={})
-      input_field_with_error(attribute, options) do
-        super
-      end
+      return super if options[:no_errors]
+      super + pick_errors(attribute)
+    end
+
+    def email_field(attribute, options={})
+      return super if options[:no_errors]
+      super + pick_errors(attribute)
+    end
+
+    def password_field(attribute, options={})
+      return super if options[:no_errors]
+      super + pick_errors(attribute)
+    end
+
+    def date_select(attribute, options={})
+      return super if options[:no_errors]
+      super + pick_errors(attribute)
+    end
+
+    def text_area(attribute, options={})
+      return super if options[:no_errors]
+      super + pick_errors(attribute)
     end
   end
 end

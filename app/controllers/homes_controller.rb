@@ -1,10 +1,7 @@
 class HomesController < ApplicationController
   def top
     if user_signed_in?
-      redirect_to home_path
+      redirect_to posts_path
     end
-  end
-
-  def home
   end
 end

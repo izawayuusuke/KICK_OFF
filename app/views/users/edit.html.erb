@@ -1,10 +1,6 @@
-<%= form_for @user, builder: FormHelper::FormCustomBuilder do |f| %>
+<%= form_for @user, builder: FormHelper::CustomFormBuilder do |f| %>
 <div class="field">
-  <% if @user.profile_image? %>
-  <%= image_tag @user.profile_image.url, class: "profile-image" %>
-  <% else %>
-  <%= image_tag("no_image.png") %>
-  <% end %>
+  <%= render 'profile_image', user: @user %>
   <%= f.file_field :profile_image %>
 </div>
 
