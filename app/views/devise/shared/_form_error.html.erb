@@ -1,0 +1,4 @@
+<%# フォームごとにエラーメッセージを表示する %>
+<% @user.errors.full_messages_for(:name).each do |message| %>
+<%= message %>
+<% end %>

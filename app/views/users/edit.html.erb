@@ -1,7 +1,32 @@
 <h1>Users#edit</h1>
 <p>Find me in app/views/users/edit.html.erb</p>
 <%= form_for @user do |f| %>
-<img src="<%= @user.profile_image %>">
-<%= f.file_field :profile_image %>
-<%= f.submit "更新する" %>
+<div class="field">
+  <% if @user.profile_image? %>
+  <%= image_tag @user.profile_image.url, class: "profile-image" %>
+  <% else %>
+  <%= image_tag("no_image.png") %>
+  <% end %>
+  <%= f.file_field :profile_image %>
+</div>
+
+<div class="field">
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+  <%= render 'devise/shared/form_error', model: @user, column: "name" %>
+</div>
+
+<div class="field">
+  <%= f.label :introduction %>
+  <%= f.text_area :introduction, class: "form-control" %>
+</div>
+
+<div class="field">
+  <%= f.label :address %>
+  <%= f.text_field :address, class: "form-control" %>
+</div>
+
+<div class="actions">
+  <%= f.submit "更新する" %>
+</div>
 <% end %>

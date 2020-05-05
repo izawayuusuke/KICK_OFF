@@ -14,6 +14,9 @@
         <li class="nav-item">
           <%= link_to "message", root_path %>
         </li>
+        <li class="nav-item">
+          <%= link_to "log out",  destroy_user_session_path(@user), method: :delete %>
+        </li>
       </ul>
     </div>
   </nav>
