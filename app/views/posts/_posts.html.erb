@@ -1,0 +1,12 @@
+<% posts.each do |post| %>
+<div class="post">
+  <%= render 'users/profile_image', user: post.user %>
+  <%= post.user.name %><br>
+  <div class="contents-area">
+    <%= post.content %><br>
+    <% if post.image? %>
+    <%= image_tag(post.image.url, class: "image-size") %>
+    <% end %>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,25 @@
+<%= form_for @user, builder: FormHelper::CustomFormBuilder do |f| %>
+<div class="field">
+  <%= render 'profile_image', user: @user %>
+  <%= f.file_field :profile_image %>
+</div>
+
+<div class="field">
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+</div>
+
+<div class="field">
+  <%= f.label :introduction %>
+  <%= f.text_area :introduction, class: "form-control" %>
+</div>
+
+<div class="field">
+  <%= f.label :address %>
+  <%= f.text_field :address, class: "form-control" %>
+</div>
+
+<div class="actions">
+  <%= f.submit "更新する" %>
+</div>
+<% end %>

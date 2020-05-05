@@ -10,6 +10,53 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import "bootstrap";
+
+body {
+  padding-top: 160px;
+}
+
+.nav-item {
+  margin: 0 10px;
+  a {
+    color: #fff;
+  }
+}
+
+.profile-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+}
+
+.image-size {
+  width: 400px;
+  height: 280px;
+}
+
+.contents-area {
+  padding-left: 60px;
+}
+
+// エラーメッセージ
+.field_with_errors {
+  label {
+    color: red;
+  }
+  display: inline;
+  input,
+  select,
+  textarea {
+    outline: 0;
+    border-color: red !important;
+  }
+}
+.errors {
+  margin-top: 0 !important;
+  padding: 0;
+  list-style: none;
+  margin-top: 8px;
+  color: red;
+}
