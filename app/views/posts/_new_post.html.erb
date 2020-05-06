@@ -1,6 +1,6 @@
 <%= form_for @post, builder: FormHelper::CustomFormBuilder do |f| %>
 <div class="field">
-  <%= f.text_area :content %>
+  <%= f.text_area :content, cols: 35, rows: 5 %>
 </div>
 
 <div class="field">

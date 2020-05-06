@@ -1,9 +1,10 @@
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-lg-4">
     <%= render 'users/profile_image', user: current_user %>
+    <%= current_user.name %>
     <%= render 'new_post' %>
   </div>
-  <div class="col-md-7">
+  <div class="col-lg-8">
     <%= render 'posts', posts: @posts %>
   </div>
 </div>

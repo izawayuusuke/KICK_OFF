@@ -1,5 +1,7 @@
+<%= link_to user_path(user) do %>
 <% if user.profile_image? %>
 <%= image_tag user.profile_image.url, class: "profile-image" %>
 <% else %>
 <%= image_tag("no_image.png") %>
+<% end %>
 <% end %>

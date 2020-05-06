@@ -1,2 +1,13 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<div class="row">
+  <div class="post-area col-9 offset-2">
+    <%= render 'users/profile_image', user: @post.user %>
+    <%= @post.user.name %>
+    <%= link_to "削除する", post_path(@post), method: :delete %>
+    <div class="offset-lg-1">
+      <%= @post.content %><br>
+      <% if @post.image? %>
+      <%= image_tag @post.image.url, class: "image-size" %>
+      <% end %>
+    </div>
+  </div>
+</div>

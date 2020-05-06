@@ -1,11 +1,11 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :destroy]
   def index
     @posts = Post.all.order(id: "DESC")
     @post = Post.new
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def create
@@ -18,6 +18,11 @@ class PostsController < ApplicationController
       @posts = Post.all.order(id: "DESC")
       render :index
     end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to posts_path
   end
 
   private
