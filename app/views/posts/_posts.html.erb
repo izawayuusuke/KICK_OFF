@@ -10,5 +10,8 @@
           <% end %>
         <% end %>
       </div>
+      <div id="likes_<%= post.id %>">
+      <%= render 'likes/like', post: post %>
+      </div>
     </div>
   <% end %>
