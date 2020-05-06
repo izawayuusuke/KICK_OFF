@@ -6,8 +6,11 @@
     <div class="offset-lg-1">
       <%= @post.content %><br>
       <% if @post.image? %>
-      <%= image_tag @post.image.url, class: "image-size" %>
+        <%= image_tag @post.image.url, class: "image-size" %>
       <% end %>
+    </div>
+    <div id="likes_<%= @post.id %>">
+      <%= render 'likes/like', post: @post %>
     </div>
   </div>
 </div>
