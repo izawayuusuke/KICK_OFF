@@ -1,14 +1,17 @@
   <% posts.each do |post| %>
-  <div class="post-area">
-    <%= render 'users/profile_image', user: post.user %>
-    <%= post.user.name %><br>
-    <%= link_to post_path(post) do %>
-    <div class="offset-md-1">
-      <%= post.content %><br>
-      <% if post.image? %>
-      <%= image_tag(post.image.url, class: "image-size") %>
-      <% end %>
-      <% end %>
+    <div class="post-area">
+      <%= render 'users/profile_image', user: post.user %>
+      <%= post.user.name %><br>
+      <%= link_to post_path(post) do %>
+        <div class="offset-md-1">
+          <%= post.content %><br>
+          <% if post.image? %>
+            <%= image_tag(post.image.url, class: "image-size") %>
+          <% end %>
+        <% end %>
+      </div>
+      <div id="likes_<%= post.id %>">
+      <%= render 'likes/like', post: post %>
+      </div>
     </div>
-  </div>
   <% end %>
