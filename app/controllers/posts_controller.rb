@@ -1,23 +1,28 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :destroy]
   def index
     @posts = Post.all.order(id: "DESC")
     @post = Post.new
   end
 
   def show
-    @post = Post.find(params[:id])
   end
 
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      flash[:success] = "投稿しました"
+      flash[:primary] = "投稿しました"
       redirect_to posts_path
     else
-      @user = current_user
-      render :new
+      @posts = Post.all.order(id: "DESC")
+      render :index
     end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to posts_path
   end
 
   private

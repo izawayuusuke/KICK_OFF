@@ -18,6 +18,14 @@ body {
   padding-top: 160px;
 }
 
+a {
+  color: #000;
+  &:hover {
+    color: #000;
+    text-decoration: none;
+  }
+}
+
 .nav-item {
   margin: 0 10px;
   a {
@@ -32,12 +40,13 @@ body {
 }
 
 .image-size {
-  width: 400px;
-  height: 280px;
+  width: 500px;
+  height: 300px;
 }
 
-.contents-area {
-  padding-left: 60px;
+.post-area {
+  padding: 10px;
+  border: 1px solid #000;
 }
 
 // エラーメッセージ
