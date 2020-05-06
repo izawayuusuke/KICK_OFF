@@ -12,11 +12,11 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.user_id = current_user.id
     if @post.save
-      flash[:success] = "投稿しました"
+      flash[:primary] = "投稿しました"
       redirect_to posts_path
     else
-      @user = current_user
-      render :new
+      @posts = Post.all.order(id: "DESC")
+      render :index
     end
   end
 
