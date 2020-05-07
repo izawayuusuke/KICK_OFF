@@ -1,7 +1,6 @@
   <% posts.each do |post| %>
     <div class="post-area">
-      <%= render 'users/profile_image', user: post.user %>
-      <%= post.user.name %><br>
+      <%= render 'users/profile', user: post.user %>
       <%= link_to post_path(post) do %>
         <div class="offset-md-1">
           <%= post.content %><br>

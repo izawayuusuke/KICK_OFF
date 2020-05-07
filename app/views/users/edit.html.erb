@@ -1,8 +1,9 @@
 <%= form_for @user, builder: FormHelper::CustomFormBuilder do |f| %>
+  <%= render 'profile', user: @user %>
+
   <div class="field">
-    <%= render 'profile_image', user: @user %>
     <%= f.file_field :profile_image %>
-  </div>
+  </div><br>
 
   <div class="field">
     <%= f.label :name %>
