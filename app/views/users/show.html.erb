@@ -1,10 +1,19 @@
-<div>
-  <%= render 'profile', user: @user %>
-<% if @user == current_user %>
-  <%= link_to 'プロフィールを編集', edit_user_path(@user) %>
-<% else %>
-  <%= render 'relationships/follow_button', user: @user %>
-<% end %>
+<div class="row">
+  <div class="col-lg-4">
+    <%= render 'profile', user: @user %>
+    <div class="btn">
+      <% if @user == current_user %>
+        <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn-outline-primary" %>
+      <% else %>
+        <%= render 'relationships/follow_button', user: @user %>
+      <% end %>
+    </div>
+    <div class="font-name-bg">
+      <%= @user.name %>
+    </div>
+    <p><%= @user.introduction %></p>
+  </div>
+  <div class="col-lg-8">
+    <%= render 'posts/posts', posts: @user.posts %>
+  </div>
 </div>
-<%= @user.introduction %>
-<%= render 'posts/posts', posts: @user.posts %>

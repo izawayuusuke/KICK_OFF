@@ -1,6 +1,7 @@
 <div class="row">
   <div class="post-area col-9 offset-2">
     <%= render 'users/profile', user: @post.user %>
+    <%= @post.user.name %>
     <%= link_to "削除する", post_path(@post), method: :delete %>
     <div class="offset-lg-1">
       <%= @post.content %><br>
@@ -8,8 +9,11 @@
         <%= image_tag @post.image.url, class: "image-size" %>
       <% end %>
     </div>
-    <div id="likes_<%= @post.id %>">
-      <%= render 'likes/like', post: @post %>
+    <div class="row">
+      <div id="likes_<%= @post.id %>" class="offset-1">
+        <%= render 'likes/like', post: @post %>
+      </div>
+      <%= render 'delete_post', post: @post %>
     </div>
   </div>
 </div>

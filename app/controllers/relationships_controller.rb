@@ -3,12 +3,10 @@ class RelationshipsController < ApplicationController
 
   def create
     current_user.follow(@user)
-    redirect_to @user
   end
 
   def destroy
     current_user.unfollow(@user)
-    redirect_to @user
   end
 
   private

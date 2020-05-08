@@ -11,7 +11,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  validates :name, :address, presence: true
+  validates :name, presence: true
 
   mount_uploader :profile_image, ImageUploader
 
