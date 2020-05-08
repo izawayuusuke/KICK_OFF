@@ -1,0 +1,18 @@
+<div class="offset-2">
+<%= render 'users/profile', user: @user %>
+<div class="font-name-bg"><%= @user.name %></div>
+</div>
+<div class="row text-center">
+<%= link_to "フォロワー", followers_user_path(@user), class: "col-4 offset-2" %>
+<%= link_to "フォロー中", following_user_path(@user), class: "col-4" %>
+</div>
+  <% users.each do |user| %>
+    <div class="post-area col-8 offset-2">
+      <div class="row">
+        <%= render 'users/profile', user: user %>
+        <%= user.name %>
+        <%= render 'relationships/follow_button', user: user %>
+      </div>
+          <%= user.introduction %><br>
+    </div>
+  <% end %>
