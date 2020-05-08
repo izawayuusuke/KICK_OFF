@@ -12,6 +12,12 @@
       <%= @user.name %>
     </div>
     <p><%= @user.introduction %></p>
+    <%= link_to following_user_path(@user) do %>
+    Following <%= @user.following.count %>
+    <% end %>
+    <%= link_to followers_user_path(@user) do %>
+    Followers <%= @user.followers.count %>
+    <% end %>
   </div>
   <div class="col-lg-8">
     <%= render 'posts/posts', posts: @user.posts %>
