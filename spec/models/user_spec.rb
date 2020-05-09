@@ -25,6 +25,12 @@ RSpec.describe User, type: :model do
       end
     end
 
+    context 'Comment' do
+      it '1:N' do
+        expect(User.reflect_on_association(:comments).macro).to eq :has_many
+      end
+    end
+
     context 'Relationship' do
       it 'active_relationships 1:N' do
         expect(User.reflect_on_association(:active_relationships).macro).to eq :has_many

@@ -6,6 +6,8 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
+    @comments = @post.comments.order(id: "DESC")
   end
 
   def create
