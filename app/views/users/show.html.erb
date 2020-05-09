@@ -12,14 +12,9 @@
       <%= @user.name %>
     </div>
     <%= simple_format(@user.introduction) %>
-    <%= link_to following_user_path(@user) do %>
-      Following <%= @user.following.count %>
-    <% end %>
-
-    <%= link_to followers_user_path(@user) do %>
-      Followers <%= @user.followers.count %>
-    <% end %>
-
+    <div id="follow_count_<%= @user.id %>">
+      <%= render 'relationships/follow_count' %>
+    </div>
     <% if @user.posts.blank? %>
       <p class="no-posts">投稿がありません</p>
       <%= link_to '投稿してみよう', posts_path, class: "btn btn-outline-primary" %>
