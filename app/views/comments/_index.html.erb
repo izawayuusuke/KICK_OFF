@@ -1,0 +1,14 @@
+<% @comments.each do |comment| %>
+  <div class="comment-area">
+    <%= render 'users/profile', user: comment.user %>
+    <%= comment.user.name %>
+    <div class="offset-lg-1">
+      <%= comment.comment %>
+      <% if comment.user == current_user %>
+        <%= link_to post_comment_path(@post, comment), method: :delete, remote: true do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

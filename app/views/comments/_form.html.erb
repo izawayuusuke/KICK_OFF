@@ -1,0 +1,9 @@
+<%= form_with model:[@post, @comment], data: { remote: true } do |f| %>
+  <div class="field">
+    <%= f.text_area :comment %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "コメントする" %>
+  </div>
+<% end %>
