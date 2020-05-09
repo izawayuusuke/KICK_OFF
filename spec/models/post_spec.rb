@@ -18,7 +18,7 @@ RSpec.describe Post, type: :model do
 
   describe 'association' do
     context 'User' do
-      it '1:N' do
+      it 'N:1' do
         expect(Post.reflect_on_association(:user).macro).to eq :belongs_to
       end
     end
@@ -26,6 +26,12 @@ RSpec.describe Post, type: :model do
     context 'Like' do
       it '1:N' do
         expect(Post.reflect_on_association(:likes).macro).to eq :has_many
+      end
+    end
+
+    context 'Comment' do
+      it '1:N' do
+        expect(Post.reflect_on_association(:comments).macro).to eq :has_many
       end
     end
   end
