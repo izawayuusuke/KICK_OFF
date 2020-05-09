@@ -11,9 +11,7 @@
 </head>
 
 <body>
-  <% if user_signed_in? %>
-    <%= render 'layouts/header' %>
-  <% end %>
+  <%= render 'layouts/header' %>
 
   <div class="container">
     <% flash.each do |message_type, message| %>

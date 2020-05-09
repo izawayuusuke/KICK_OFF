@@ -4,20 +4,28 @@
       <%= link_to root_path do %>
         <%= image_tag('title_logo.png', width: 80, class: "logo") %>
       <% end %>
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <%= link_to "search", root_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "notification", root_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "message", root_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "log out",  destroy_user_session_path(@user), method: :delete %>
-        </li>
-      </ul>
+      <% if user_signed_in? %>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <%= link_to root_path do %>
+              <i class="far fa-bell"> notification</i>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to root_path do %>
+              <i class="far fa-envelope"> message</i>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to current_user do %>
+              <i class="far fa-user"> Profile</i>
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path(@user), method: :delete %>
+          </li>
+        </ul>
+      <% end %>
     </div>
   </nav>
 </header>

@@ -6,6 +6,8 @@ ja:
     attributes:
       user:
         name: 名前
+        introduction: 自己紹介
+        address: 住所
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード(確認用)

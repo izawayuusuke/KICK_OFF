@@ -1,1 +1,4 @@
 <%= render 'relationships/follow_users', users: @following %>
+<% if @following.blank? %>
+  <p class="offset-4 no-relation">まだ誰もフォローしていません</p>
+<% end %>
