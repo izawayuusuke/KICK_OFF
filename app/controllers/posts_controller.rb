@@ -24,7 +24,11 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_path
+    @post_id = @post.id
+    path = Rails.application.routes.recognize_path(request.referrer)
+    if path == { :controller=>"posts", :action=>"show", :id=>"#{@post.id}" }
+      redirect_to posts_path
+    end
   end
 
   private

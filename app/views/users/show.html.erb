@@ -1,9 +1,9 @@
 <div class="row">
-  <div class="col-lg-4">
+  <div class="col-lg-3">
     <%= render 'profile', user: @user %>
     <div class="btn">
       <% if @user == current_user %>
-        <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn-outline-primary" %>
+        <%= link_to '編集する', edit_user_path(@user), class: "btn-outline-primary" %>
       <% else %>
         <%= render 'relationships/follow_button', user: @user %>
       <% end %>
@@ -11,15 +11,16 @@
     <div class="font-name-bg">
       <%= @user.name %>
     </div>
-    <p><%= @user.introduction %></p>
-    <%= link_to following_user_path(@user) do %>
-    Following <%= @user.following.count %>
-    <% end %>
-    <%= link_to followers_user_path(@user) do %>
-    Followers <%= @user.followers.count %>
+    <%= simple_format(@user.introduction) %>
+    <div id="follow_count_<%= @user.id %>">
+      <%= render 'relationships/follow_count' %>
+    </div>
+    <% if @posts.blank? %>
+      <p class="no-posts">投稿がありません</p>
+      <%= link_to '投稿してみよう', posts_path, class: "btn btn-outline-primary" %>
     <% end %>
   </div>
-  <div class="col-lg-8">
-    <%= render 'posts/posts', posts: @user.posts %>
+  <div class="col-lg-9">
+    <%= render 'posts/posts', posts: @posts %>
   </div>
 </div>

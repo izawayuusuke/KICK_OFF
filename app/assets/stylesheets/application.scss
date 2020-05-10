@@ -55,7 +55,11 @@ a {
 .post-area,
 .comment-area {
   padding: 10px;
-  border: 1px solid #000;
+  border: 1px solid gray;
+}
+
+.form-control {
+  width: 70%;
 }
 
 // エラーメッセージ
@@ -77,4 +81,16 @@ a {
   list-style: none;
   margin-top: 8px;
   color: red;
+}
+
+.no-relation,
+.no-posts {
+  font-size: 20px;
+  color: blue;
+  font-weight: bold;
+  padding-top: 30px;
+}
+
+.outline {
+  border: 1px solid gray;
 }
