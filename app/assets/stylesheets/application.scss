@@ -53,7 +53,8 @@ a {
 }
 
 .post-area,
-.comment-area {
+.comment-area,
+.follow-area {
   padding: 10px;
   border: 1px solid gray;
 }
@@ -89,8 +90,4 @@ a {
   color: blue;
   font-weight: bold;
   padding-top: 30px;
-}
-
-.outline {
-  border: 1px solid gray;
 }

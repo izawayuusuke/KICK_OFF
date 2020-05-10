@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :destroy]
+  before_action :post_find, only: [:show, :destroy]
   def index
     @posts = Post.all.order(id: "DESC")
     @post = Post.new
@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   end
 
   private
-    def set_post
+    def post_find
       @post = Post.find(params[:id])
     end
 
