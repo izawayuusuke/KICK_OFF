@@ -2,8 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
   def show
-    @share_post = Post.where("shares.user_id =?", current_user.id)
-    @posts = @user.posts.order(id: 'DESC')
+    @posts = (Post.left_joins(:shares).where(shares: { user_id: @user.id }).or(Post.left_joins(:shares).where(user_id: @user.id))).order(created_at: "DESC")
   end
 
   def edit
