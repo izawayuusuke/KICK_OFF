@@ -4,9 +4,6 @@ class SharesController < ApplicationController
   def create
     @share = Share.create(user_id: current_user.id, post_id: @post.id)
     @share.save
-    @post = Post.new(user_id: @post.user_id,
-                    content: @post.content,
-                    image: @post.image)
   end
 
   def destroy
