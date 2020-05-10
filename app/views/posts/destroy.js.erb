@@ -1,0 +1,5 @@
+if (location.pathname == '/posts' || '/users/:id') {
+  $('#post_<%= @post.id %>').html("")
+} else {
+  $('#post').html("");
+}

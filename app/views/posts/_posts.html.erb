@@ -1,4 +1,5 @@
 <% posts.each do |post| %>
+<div id="post_<%= post.id %>">
   <div class="post-area">
     <%= render 'users/profile', user: post.user %>
     <%= post.user.name %>
@@ -17,4 +18,5 @@
         </div>
       </div>
   </div>
+</div>
 <% end %>

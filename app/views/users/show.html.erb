@@ -15,12 +15,12 @@
     <div id="follow_count_<%= @user.id %>">
       <%= render 'relationships/follow_count' %>
     </div>
-    <% if @user.posts.blank? %>
+    <% if @posts.blank? %>
       <p class="no-posts">投稿がありません</p>
       <%= link_to '投稿してみよう', posts_path, class: "btn btn-outline-primary" %>
     <% end %>
   </div>
   <div class="col-lg-9">
-    <%= render 'posts/posts', posts: @user.posts %>
+    <%= render 'posts/posts', posts: @posts %>
   </div>
 </div>
