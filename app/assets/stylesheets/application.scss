@@ -59,8 +59,13 @@ a {
   border: 1px solid gray;
 }
 
+// フィールド
 .form-control {
   width: 70%;
+}
+.custom-select {
+  width: 50%;
+  margin-left: 5%;
 }
 
 // エラーメッセージ
