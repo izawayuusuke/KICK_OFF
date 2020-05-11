@@ -3,6 +3,7 @@
   <div class="post-area">
     <%= render 'users/profile', user: post.user %>
     <%= post.user.name %>
+    <%= render 'shared/create_time', object: post %>
     <%= link_to post_path(post) do %>
       <div class="offset-md-2">
         <%= simple_format(post.content) %>
@@ -13,6 +14,9 @@
         <div class="row">
           <div id="likes_<%= post.id %>">
             <%= render 'likes/like', post: post %>
+          </div>
+          <div id="shares_<%= post.id %>" class="offset-1">
+            <%= render 'shares/share', post: post %>
           </div>
           <%= render 'posts/delete_post', post: post %>
         </div>

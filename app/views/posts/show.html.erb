@@ -12,8 +12,9 @@
     <div class="post-area">
       <%= render 'users/profile', user: @post.user %>
       <%= @post.user.name %>
-      <div class="offset-lg-1">
-        <%= @post.content %><br>
+      <%= render 'shared/create_time', object: @post %>
+      <div class="offset-1">
+        <%= simple_format(@post.content) %>
         <% if @post.image? %>
           <%= image_tag @post.image.url, class: "image-size" %>
         <% end %>
@@ -21,6 +22,9 @@
       <div class="row">
         <div id="likes_<%= @post.id %>" class="offset-1">
           <%= render 'likes/like', post: @post %>
+        </div>
+        <div id="shares_<%= @post.id %>" class="offset-1">
+          <%= render 'shares/share', post: @post %>
         </div>
         <%= render 'delete_post', post: @post %>
       </div>
