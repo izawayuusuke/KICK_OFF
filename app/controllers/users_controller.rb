@@ -2,7 +2,11 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
   def show
-    @posts = (Post.left_joins(:shares).where(shares: { user_id: @user.id }).or(Post.left_joins(:shares).where(user_id: @user.id))).order(created_at: "DESC")
+    # ユーザーがシェアした投稿とユーザーの投稿を同時に取得する
+    @posts = Post.left_joins(:shares).where(shares: { user_id: @user.id })
+              .or(
+              Post.left_joins(:shares).where(user_id: @user.id))
+              .order(created_at: :desc)
   end
 
   def edit

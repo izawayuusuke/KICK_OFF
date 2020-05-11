@@ -3,11 +3,9 @@ class SharesController < ApplicationController
 
   def create
     @share = Share.create(user_id: current_user.id, post_id: @post.id)
-    @share.save
   end
 
   def destroy
-    @share = Share.find_by(user_id: current_user.id, post_id: @post.id)
-    @share.destroy
+    @share = Share.find_by(user_id: current_user.id, post_id: @post.id).destroy
   end
 end

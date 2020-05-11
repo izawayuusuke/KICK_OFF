@@ -3,6 +3,7 @@
   <div class="comment-area">
     <%= render 'users/profile', user: comment.user %>
     <%= comment.user.name %>
+    <%= render 'shared/create_time', object: comment %>
     <div class="offset-1">
       <%= comment.comment %>
       <% if comment.user == current_user %>

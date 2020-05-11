@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   before_action :post_find, only: [:show, :destroy]
   def index
-    @posts = Post.all.order(id: "DESC")
+    @posts = Post.all.order(created_at: "DESC")
     @post = Post.new
   end
 
   def show
     @comment = Comment.new
-    @comments = @post.comments.order(id: "DESC")
+    @comments = @post.comments.order(created_at: "DESC")
   end
 
   def create
@@ -17,7 +17,7 @@ class PostsController < ApplicationController
       flash[:primary] = "投稿しました"
       redirect_to posts_path
     else
-      @posts = Post.all.order(id: "DESC")
+      @posts = Post.all.order(created_at: "DESC")
       render :index
     end
   end
@@ -25,6 +25,7 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     @post_id = @post.id
+    # 詳細ページで投稿を削除すると、ajaxでidが取得できないため、リダイレクトを用意する
     path = Rails.application.routes.recognize_path(request.referrer)
     if path == { :controller=>"posts", :action=>"show", :id=>"#{@post.id}" }
       redirect_to posts_path

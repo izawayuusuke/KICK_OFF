@@ -12,6 +12,7 @@
     <div class="post-area">
       <%= render 'users/profile', user: @post.user %>
       <%= @post.user.name %>
+      <%= render 'shared/create_time', object: @post %>
       <div class="offset-1">
         <%= simple_format(@post.content) %>
         <% if @post.image? %>
