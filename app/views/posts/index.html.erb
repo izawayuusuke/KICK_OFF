@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-lg-3">
+    <%= render 'users/profile', user: current_user %>
+    <%= current_user.name %><br>
+    <%= render 'new_post' %>
+  </div>
+  <div class="col-lg-9">
+    <%= render 'posts', posts: @posts %>
+  </div>
+</div>

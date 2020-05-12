@@ -1,0 +1,5 @@
+<% if post.user == current_user %>
+  <%= link_to post_path(post), method: :delete, data: { confirm: "投稿を削除しますか？" }, remote: true, class: "offset-1" do %>
+    <i class="fas fa-trash-alt"></i>
+  <% end %>
+<% end %>

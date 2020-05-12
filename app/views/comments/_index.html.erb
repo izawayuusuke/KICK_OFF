@@ -1,0 +1,18 @@
+<p style="padding-top: 20px;">Comments <%= comments.count %></p>
+<% @comments.each do |comment| %>
+  <div class="comment-area">
+    <%= render 'users/profile', user: comment.user %>
+    <%= comment.user.name %>
+    <%= render 'shared/create_time', object: comment %>
+    <div class="offset-1">
+      <%= comment.comment %>
+      <% if comment.user == current_user %>
+        <div class="row">
+          <%= link_to post_comment_path(@post, comment), method: :delete, remote: true do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
