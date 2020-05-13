@@ -3,7 +3,13 @@
   <%= f.text_area :content, cols: 27, rows: 6 %>
 </div>
 
-<div class="field">
+<% if @post.image? %>
+  <%= image_tag @post.image.url, class: "prev-size", id: "img_prev" %>
+<% else %>
+  <%= image_tag "no_post_image.png", class: "prev-size", id: "img_prev" %>
+<% end %>
+
+<div class="field" id="post_img">
   <%= f.label :image, "画像をアップロード", class: "btn btn-primary" %>
   <%= f.file_field :image, style: "display: none;" %>
 </div>
