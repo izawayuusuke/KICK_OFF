@@ -8,7 +8,7 @@
       <div class="offset-md-2">
         <%= simple_format(post.content) %>
         <% if post.image? %>
-          <%= image_tag(asset_path(post.image.url), class: "image-size") %>
+          <%= image_tag post.image.url, class: "image-size" %>
         <% end %>
       <% end %>
         <div class="row">
