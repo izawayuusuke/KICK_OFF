@@ -28,6 +28,9 @@ a {
   }
 }
 
+div {
+  word-break: break-word;
+}
 // フォント関連
 .font-name-bg {
   font-size: 18px;
@@ -49,6 +52,7 @@ a {
 
 .image-size {
   width: 500px;
+  max-width: 80%;
   height: 300px;
 }
 

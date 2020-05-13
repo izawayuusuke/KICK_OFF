@@ -2,12 +2,11 @@
 lock "~> 3.14.0"
 
 set :application, "KICK_OFF"
-set :repo_url, "yuu05020@gmail.com:izawayuusuke/KICK_OFF.git"
+set :repo_url, "https://github.com/izawayuusuke/KICK_OFF.git"
 set :deploy_to, "/home/ec2-user/KICK_OFF"
 set :rbenv_ruby, '2.5.7'
 set :linked_files, %w{config/master.key .env}
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
-server '18.181.100.147', user: 'ec2-user', roles: %w{app web db}
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 

@@ -24,8 +24,7 @@
 
   <div class="field">
     <%= f.label :country %>
-    <%= f.country_select :country, {}, class: "custom-select", size: 1 %>
-  </div>
+<%= f.country_select(:country, {selected: @user.country}, {class: "form-control"}) %>  </div>
 
   <div class="actions">
     <%= f.submit "更新する", class: "btn btn-outline-primary" %>
