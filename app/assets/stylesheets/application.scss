@@ -36,8 +36,12 @@ div {
   word-break: break-word;
 }
 // フォント関連
-.font-name-bg {
+p,
+li {
   font-size: 18px;
+}
+.font-name-bg {
+  font-size: 22px;
   font-weight: bold;
 }
 
