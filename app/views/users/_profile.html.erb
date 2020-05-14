@@ -2,6 +2,6 @@
   <% if user.profile_image? %>
     <%= image_tag user.profile_image.url, class: "profile-image", id: "user_img_prev" %>
   <% else %>
-    <%= image_tag "no_image.png", id: "user_img_prev" %>
+    <%= image_tag "no_image.png", class: "profile-image", id: "user_img_prev" %>
   <% end %>
 <% end %>
