@@ -44,16 +44,22 @@ div {
   }
 }
 
+// 画像サイズ
 .profile-image {
   width: 80px;
   height: 80px;
   border-radius: 50px;
 }
-
 .image-size {
   width: 500px;
   max-width: 80%;
   height: 270px;
+}
+.prev-size {
+  width: 250px;
+  max-width: 100%;
+  height: 200px;
+  margin-bottom: 10px;
 }
 
 .post-area,
@@ -91,6 +97,7 @@ div {
   list-style: none;
   margin-top: 8px;
   color: red;
+  margin-bottom: 0 !important;
 }
 
 .no-relation,
