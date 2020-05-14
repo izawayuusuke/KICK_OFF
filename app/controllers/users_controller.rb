@@ -28,6 +28,10 @@ class UsersController < ApplicationController
     @followers = @user.followers
   end
 
+  def likes
+    @like_posts = Post.joins(:likes).where(likes: { user_id: @user.id })
+  end
+
   private
     def set_user
       @user = User.find(params[:id])

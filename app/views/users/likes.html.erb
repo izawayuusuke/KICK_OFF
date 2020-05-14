@@ -15,9 +15,8 @@
     <div id="follow_count_<%= @user.id %>">
       <%= render 'relationships/follow_count' %>
     </div>
-    <%= link_to "お気に入り", likes_user_path(@user), class:"btn btn-sm btn-outline-danger col-lg-6 col-9"%>
   </div>
   <div class="col-8">
-    <%= render 'posts/posts', posts: @posts %>
+    <%= render 'posts/posts', posts: @like_posts %>
   </div>
 </div>

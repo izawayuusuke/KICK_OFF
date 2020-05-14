@@ -28,6 +28,10 @@ a {
   }
 }
 
+li {
+  list-style: none;
+}
+
 div {
   word-break: break-word;
 }
@@ -57,7 +61,7 @@ div {
 }
 .prev-size {
   width: 250px;
-  max-width: 100%;
+  max-width: 105%;
   height: 200px;
   margin-bottom: 10px;
 }
