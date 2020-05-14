@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update] do
     member do
-      get :following, :followers
+      get :following, :followers, :likes
     end
   end
 

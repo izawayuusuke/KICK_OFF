@@ -63,7 +63,7 @@ $(document).on("turbolinks:load", function () {
 });
 
 // 投稿の文字数をカウント
-$(function () {
+$(document).on("turbolinks:load", function () {
   $("#input-text").on("keydown", function () {
     let countNum = String($(this).val().length);
     $("#counter").text(countNum);
