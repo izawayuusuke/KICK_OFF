@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 2020_05_10_014542) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.string "country"
     t.string "profile_image"
     t.text "introduction"
     t.boolean "admin", default: false
