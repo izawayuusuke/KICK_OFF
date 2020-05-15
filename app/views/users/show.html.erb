@@ -16,6 +16,20 @@
       <%= render 'relationships/follow_count' %>
     </div>
     <%= link_to "お気に入り", likes_user_path(@user), class:"btn btn-sm btn-outline-danger col-lg-6 col-9"%>
+
+    <% unless @user.id == current_user.id %>
+      <% if @is_room == true %>
+        <%= link_to "チャット", room_path(@room_id) %>
+      <% else %>
+        <%= form_for @room do |f| %>
+          <%= fields_for @entry do |e| %>
+            <%= e.hidden_field :user_id, value: @user.id %>
+          <% end %>
+          <%= f.submit "チャット" %>
+        <% end %>
+      <% end %>
+    <% end %>
+
   </div>
   <div class="col-8">
     <%= render 'posts/posts', posts: @posts %>
