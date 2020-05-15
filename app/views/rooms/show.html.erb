@@ -3,7 +3,7 @@
 <h4>参加者</h4>
 <% @entries.each do |e| %>
   <%= link_to e.user.name, user_path(e.user_id) %>
-<% end %>
+<% end %><%= current_user.name %> <%# 消す %>
 
 <h1>Chat room</h1>
 <form>
