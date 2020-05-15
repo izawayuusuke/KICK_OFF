@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-3">
+  <div class="col-4">
     <%= render 'profile', user: @user %>
     <div class="btn">
       <% if @user == current_user %>
@@ -15,12 +15,23 @@
     <div id="follow_count_<%= @user.id %>">
       <%= render 'relationships/follow_count' %>
     </div>
-    <% if @posts.blank? %>
-      <p class="no-posts">投稿がありません</p>
-      <%= link_to '投稿してみよう', posts_path, class: "btn btn-outline-primary" %>
+    <%= link_to "お気に入り", likes_user_path(@user), class:"btn btn-sm btn-outline-danger col-lg-6 col-9"%>
+
+    <% unless @user.id == current_user.id %>
+      <% if @is_room == true %>
+        <%= link_to "チャット", room_path(@room_id) %>
+      <% else %>
+        <%= form_for @room do |f| %>
+          <%= fields_for @entry do |e| %>
+            <%= e.hidden_field :user_id, value: @user.id %>
+          <% end %>
+          <%= f.submit "チャット" %>
+        <% end %>
+      <% end %>
     <% end %>
+
   </div>
-  <div class="col-lg-9">
+  <div class="col-8">
     <%= render 'posts/posts', posts: @posts %>
   </div>
 </div>

@@ -1,1 +1,2 @@
 $("#shares_<%= @post.id %>").html("<%= j(render 'shares/share', post: @post) %>");
+$("#sharing_<%= @post.id %>").html("<%= j(render 'shares/sharing', post: @post) %>");
