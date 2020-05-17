@@ -8,6 +8,12 @@ document.addEventListener 'turbolinks:load', ->
 
     received: (data) ->
       $('#messages').append data['message']
+      current_user_id = $('#messages').data('user_id')
+      message_user_id = $('.message-user:last-child').data('message_user_id')
+      if current_user_id == message_user_id
+        $('.message-user:last-child').addClass('force-message-right')
+      else
+        $('.message-user:last-child').addClass('force-message-left')
       # Called when there's incoming data on the websocket for this channel
 
     speak: (message) ->

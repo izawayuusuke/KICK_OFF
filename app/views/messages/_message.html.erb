@@ -1,3 +1,9 @@
-<div class="message">
-  <p><%= message.user.name %>: <%= message.content %></p>
-</div>
+  <% if message.user_id == user_id %>
+    <div class="message-right message-user" data-message_user_id="<%= message.user_id %>">
+      <p><%= message.content %> message_user_id: <%= message.user_id %> user_id:<%= user_id %></p>
+    </div>
+  <% else %>
+    <div class="message-left message-user" data-message_user_id="<%= message.user_id %>">
+      <p><%= message.content %> message_user_id: <%= message.user_id %> user_id:<%= user_id %></p>
+    </div>
+  <% end %>

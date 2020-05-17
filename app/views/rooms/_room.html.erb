@@ -1,0 +1,16 @@
+<% unless @user.id == current_user.id %>
+  <% if @is_room == true %>
+    <%= link_to room_path(@room_id), class: "btn btn-sm btn-outline-primary" do %>
+      <i class="far fa-envelope"></i>
+    <% end %>
+  <% else %>
+    <%= form_for @room do |f| %>
+      <%= fields_for @entry do |e| %>
+        <%= e.hidden_field :user_id, value: @user.id %>
+      <% end %>
+      <button type="submit" class="btn-sm btn-outline-primary">
+        <i class="far fa-envelope"> メッセージを送る</i>
+      </button>
+    <% end %>
+  <% end %>
+<% end %>

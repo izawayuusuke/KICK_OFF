@@ -69,3 +69,15 @@ $(document).on("turbolinks:load", function () {
     $("#counter").text(countNum);
   });
 });
+
+// 文字数に応じてテキストエリアを広げる
+$(function () {
+  $(document).on("change keyup keydown paste cut", "textarea", function () {
+    if ($(this).outerHeight() > this.scrollHeight) {
+      $(this).height(1);
+    }
+    while ($(this).outerHeight() < this.scrollHeight) {
+      $(this).height($(this).height() + 1);
+    }
+  });
+});

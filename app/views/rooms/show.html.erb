@@ -1,16 +1,11 @@
-<h1><%= @room.name %></h1>
+<div class="offset-1 col-10">
+  <h1 class="text-center"><%= @other.user.name %></h1>
 
-<h4>参加者</h4>
-<% @entries.each do |e| %>
-  <%= link_to e.user.name, user_path(e.user_id) %>
-<% end %><%= current_user.name %> <%# 消す %>
+  <div id="messages" data-room_id="<%= @room.id %>" data-user_id="<%= current_user.id %>">
+    <%= render @messages, user_id: current_user.id %>
+  </div>
 
-<h1>Chat room</h1>
-<form>
-  <label>Say something:</label><br>
-  <input type="text" data-behavior="room_speaker">
-</form>
-
-<div id="messages" data-room_id="<%= @room.id %>">
-  <%= render @messages %>
+  <form class="text-center" style="padding-top: 50px;">
+    <textarea data-behavior="room_speaker" style="background: #ddd;" rows="1"></textarea>
+  </form>
 </div>

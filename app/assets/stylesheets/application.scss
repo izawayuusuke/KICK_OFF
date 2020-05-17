@@ -115,3 +115,23 @@ li {
   font-weight: bold;
   padding-top: 30px;
 }
+
+// メッセージ
+.message-left {
+  text-align: left;
+  padding-right: 40%;
+}
+.message-right {
+  text-align: right;
+  padding-left: 40%;
+}
+.force-message-left {
+  text-align: left !important;
+  padding-right: 40%;
+  padding-left: 0 !important;
+}
+.force-message-right {
+  text-align: right !important;
+  padding-left: 40%;
+  padding-right: 0 !important;
+}
