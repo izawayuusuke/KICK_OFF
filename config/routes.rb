@@ -17,5 +17,5 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
-  resources :rooms, only: [:show, :create]
+  resources :rooms, only: [:index, :show, :create,]
 end

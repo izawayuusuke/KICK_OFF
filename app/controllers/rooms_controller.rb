@@ -1,6 +1,15 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @rooms = current_user.rooms
+    @others = [] #メッセージの送信先一覧を格納
+    @rooms.each do |room| # メッセージの相手を取得する
+      @entry = room.entries.where.not( user_id: current_user.id ).first
+      @others.push(@entry)
+    end
+  end
+
   def show
     @room = Room.find(params[:id])
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
