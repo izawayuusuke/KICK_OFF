@@ -1,12 +1,12 @@
 <div class="row">
-  <div class="col-4">
+  <div class="col-lg-4 col-12">
     <%= render 'users/profile', user: current_user %>
     <div class="font-name-bg">
       <%= current_user.name %>
     </div>
     <%= render 'new_post' %>
   </div>
-  <div class="col-8">
+  <div class="col-lg-8 col-12">
     <%= render 'posts', posts: @posts %>
   </div>
 </div>

@@ -1,9 +1,11 @@
   <% if message.user_id == user_id %>
     <div class="message-right message-user" data-message_user_id="<%= message.user_id %>">
-      <p><%= message.content %> message_user_id: <%= message.user_id %> user_id:<%= user_id %></p>
+      <p class="R-message-color"><%= message.content %></p>
+      <%= message.created_at.strftime("%H:%M") %>
     </div>
   <% else %>
     <div class="message-left message-user" data-message_user_id="<%= message.user_id %>">
-      <p><%= message.content %> message_user_id: <%= message.user_id %> user_id:<%= user_id %></p>
+      <p class="L-message-color"><%= message.content %></p>
+      <%= message.created_at.strftime("%H:%M") %>
     </div>
   <% end %>
