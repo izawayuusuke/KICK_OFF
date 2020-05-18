@@ -1,0 +1,23 @@
+<%= form_for @new_league do |f| %>
+  <%= render 'leagues/form', f: f %>
+  <%= f.submit "作成する" %>
+<% end %>
+
+<div style="padding-top: 50px;"></div>
+
+<%= form_for @team do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.collection_select :league_id, League.all, :id, :name %>
+  </div>
+  <%= f.submit "作成する" %>
+<% end %>
+
+<% @teams.each do |team| %>
+  <p><%= team.name %></p>
+  <p><%= team.league_id %></p>
+<% end %>
