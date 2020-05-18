@@ -3,6 +3,8 @@ class TeamsController < ApplicationController
     @new_league = League.new
     @team = Team.new
     @teams = Team.all
+    @new_player = Player.new
+    @players = Player.all
   end
 
   def show

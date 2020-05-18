@@ -3,21 +3,70 @@
   <%= f.submit "作成する" %>
 <% end %>
 
+
 <div style="padding-top: 50px;"></div>
 
 <%= form_for @team do |f| %>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
+    <%= f.label :league_id %>
     <%= f.collection_select :league_id, League.all, :id, :name %>
   </div>
+
+  <%= f.submit "作成する" %>
+<% end %>
+
+<div style="padding-top: 50px;"></div>
+
+<%= form_for @new_player do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :height %>
+    <%= f.text_field :height %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :weight %>
+    <%= f.text_field :weight %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :age %>
+    <%= f.text_field :age %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :dominant_foot %>
+    <%= f.select :dominant_foot, Player.dominant_foots.keys %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :position %>
+    <%= f.select :position, Player.positions.keys %>
+  </div>
+
   <%= f.submit "作成する" %>
 <% end %>
 
 <% @teams.each do |team| %>
   <p><%= team.name %></p>
   <p><%= team.league_id %></p>
+<% end %>
+
+<% @players.each do |player| %>
+  <p><%= player.name %></p>
+  <p><%= player.height%></p>
+  <p><%= player.weight %></p>
+  <p><%= player.age %></p>
+  <p><%= player.dominant_foot %></p>
+  <p><%= player.position %></p>
+
 <% end %>

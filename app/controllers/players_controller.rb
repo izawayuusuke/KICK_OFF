@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :set_player
+  before_action :set_player, only: [:show, :edit]
 
   def show
   end
@@ -8,7 +8,10 @@ class PlayersController < ApplicationController
   end
 
   def create
-
+    @new_player = Player.new(player_params)
+    if @new_player.save
+      redirect_to teams_path
+    end
   end
 
   private
@@ -18,6 +21,6 @@ class PlayersController < ApplicationController
 
     def player_params
       params.require(:player).permit(:name, :birthday, :age,
-                  :height, :weight, :dominant_foot, :position)
+                  :height, :weight, :dominant_foot, :position, :team_id)
     end
 end
