@@ -2,6 +2,7 @@ class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit]
 
   def show
+    @belong = Belong.new
   end
 
   def edit
@@ -10,7 +11,7 @@ class PlayersController < ApplicationController
   def create
     @new_player = Player.new(player_params)
     if @new_player.save
-      redirect_to teams_path
+      redirect_to leagues_path
     end
   end
 

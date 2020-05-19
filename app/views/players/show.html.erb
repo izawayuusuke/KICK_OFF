@@ -1,2 +1,12 @@
-<h1>Players#show</h1>
-<p>Find me in app/views/players/show.html.erb</p>
+<%= @player.name %>
+
+<%= form_for [@player, @belong] do |f| %>
+  <%= f.label :team_name %>
+  <%= f.collection_select :team_id, Team.all, :id, :name %>
+
+  <%= f.submit "作成する" %>
+<% end %>
+
+<% @player.teams.each do |team| %>
+  <%= team.name %>
+<% end %>

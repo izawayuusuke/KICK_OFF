@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_062515) do
     t.integer "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["player_id", "team_id"], name: "index_belongs_on_player_id_and_team_id", unique: true
     t.index ["player_id"], name: "index_belongs_on_player_id"
     t.index ["team_id"], name: "index_belongs_on_team_id"
   end

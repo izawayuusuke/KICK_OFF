@@ -3,6 +3,9 @@ ja:
     models:
       user: ユーザー
       post: 投稿
+      league: リーグ
+      team: チーム
+      player: 選手
     attributes:
       user:
         name: 名前
@@ -14,3 +17,16 @@ ja:
       post:
         content: 投稿内容
         image: 画像
+      league:
+        name: リーグ名
+        home_abroad_representative: リーグ分類
+      team:
+        name: チーム名
+        league_id: リーグ
+      player:
+        name: 名前
+        height: 身長
+        weight: 体重
+        age: 年齢
+        dominant_foot: 利き足
+        position: ポジション
