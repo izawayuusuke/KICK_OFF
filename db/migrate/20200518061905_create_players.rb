@@ -7,6 +7,7 @@ class CreatePlayers < ActiveRecord::Migration[5.2]
       t.integer :weight
       t.integer :dominant_foot
       t.integer :position
+      t.integer :uniform_number
 
       t.timestamps
     end

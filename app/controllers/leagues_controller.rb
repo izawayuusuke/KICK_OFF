@@ -22,6 +22,6 @@ class LeaguesController < ApplicationController
 
   private
     def league_params
-      params.require(:league).permit(:name, :home_abroad_representative)
+      params.require(:league).permit(:name, :classification)
     end
 end

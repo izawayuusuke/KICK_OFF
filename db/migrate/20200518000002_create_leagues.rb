@@ -2,7 +2,7 @@ class CreateLeagues < ActiveRecord::Migration[5.2]
   def change
     create_table :leagues do |t|
       t.string :name
-      t.integer :home_abroad_representative
+      t.integer :classification
 
       t.timestamps
     end

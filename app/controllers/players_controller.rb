@@ -9,8 +9,8 @@ class PlayersController < ApplicationController
   end
 
   def create
-    @new_player = Player.new(player_params)
-    if @new_player.save
+    @player = Player.new(player_params)
+    if @player.save
       redirect_to leagues_path
     end
   end
@@ -22,6 +22,6 @@ class PlayersController < ApplicationController
 
     def player_params
       params.require(:player).permit(:name, :birthday, :age,
-                  :height, :weight, :dominant_foot, :position, :team_id)
+                  :height, :weight, :dominant_foot, :position, :uniform_number, :team_id)
     end
 end

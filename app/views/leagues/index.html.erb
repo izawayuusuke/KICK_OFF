@@ -44,6 +44,11 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :uniform_number %>
+    <%= f.number_field :uniform_number %>
+  </div>
+
+  <div class="form-group">
     <%= f.label :dominant_foot %>
     <%= f.select :dominant_foot, Player.dominant_foots.keys %>
   </div>
@@ -59,32 +64,38 @@
   <%= link_to team_path(team) do %>
   <p><%= team.name %></p>
   <% end %>
-  <p><%= team.league_id %></p>
+  <p><%= team.league.name %></p>
 <% end %>
 
 <% @players.each do |player| %>
+  <%= link_to player do %>
   <p><%= player.name %></p>
-  <p><%= player.height%></p>
-  <p><%= player.weight %></p>
-  <p><%= player.age %></p>
-  <p><%= player.dominant_foot %></p>
-  <p><%= player.position %></p>
-
+  <% end %>
 <% end %>
 
-<div class="row league-table text-center">
-  <% League.home_abroad_representatives.keys.each do |classification| %>
-    <%= link_to root_path, style: "width: 33.3333333333%;" do %>
-      <div class="league-table">
+<div class="row group-outline text-center">
+  <% League.classifications.keys.each do |classification| %>
+    <%= link_to classification, class: "leagues-split" do %>
+      <div class="outline">
         <%= classification %>
       </div>
     <% end %>
   <% end %>
 
   <% @leagues.each do |league| %>
-    <%= link_to league_path(league), style: "width: 33.3333333333%;" do %>
-      <div class="league-table">
+    <%= link_to league_path(league), class: "leagues-split" do %>
+      <div class="outline">
         <%= league.name %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="row group-outline text-center">
+  <% @teams.each do |team| %>
+    <%= link_to team_path(team), class: "teams-split" do %>
+      <div class="outline">
+        <%= team.name %>
       </div>
     <% end %>
   <% end %>

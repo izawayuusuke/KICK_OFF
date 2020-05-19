@@ -1,7 +1,12 @@
 class TeamsController < ApplicationController
   def show
     @team = Team.find(params[:id])
-    @players = Player.all
+    @players = @team.players
+    @GK = @players.where(position: "GK")
+    @DF = @players.where(position: "DF")
+    @MF = @players.where(position: "MF")
+    @FW = @players.where(position: "FW")
+
   end
 
   def create

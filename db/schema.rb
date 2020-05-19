@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_062515) do
 
   create_table "leagues", force: :cascade do |t|
     t.string "name"
-    t.integer "home_abroad_representative"
+    t.integer "classification"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_05_18_062515) do
     t.integer "weight"
     t.integer "dominant_foot"
     t.integer "position"
+    t.integer "uniform_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

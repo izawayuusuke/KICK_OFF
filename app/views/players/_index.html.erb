@@ -1,0 +1,21 @@
+<% players.each do |player| %>
+  <%= link_to player_path(player) do %>
+    <div class="outline">
+      <div class="row offset-1">
+        <i class="fas fa-tshirt"></i><%= player.uniform_number %>
+        <div class="col-5">
+          <%= player.name %>
+        </div>
+        <div class="col-2">
+          <%= player.age %>歳
+        </div>
+        <div class="col-2">
+          <%= player.height %>cm
+        </div>
+        <div class="col-2">
+          <%= player.weight %>kg
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

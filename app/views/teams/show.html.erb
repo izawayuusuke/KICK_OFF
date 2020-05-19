@@ -1,5 +1,14 @@
-<%= @team.name %>
+<h1><%= @team.name %></h1>
+<p><%= @team.league.name %></p>
 
-<% @players.each do |player| %>
-  <%= player.name %>
-<% end %>
+<h2 class="position">GK</h2>
+<%= render 'players/index', players: @GK %>
+
+<h2 class="position">DF</h2>
+<%= render 'players/index', players: @DF %>
+
+<h2 class="position">MF</h2>
+<%= render 'players/index', players: @MF %>
+
+<h2 class="position">FW</h2>
+<%= render 'players/index', players: @FW %>

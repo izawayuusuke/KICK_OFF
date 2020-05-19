@@ -161,9 +161,25 @@ li {
   }
 }
 
-.outline {
+.group-outline {
   border: 1px solid gray;
 }
-.league-table {
-  border: 1px solid black;
+.outline {
+  border: 1px solid gray;
+  padding: 10px 0;
+}
+
+.leagues-split {
+  width: 33.3333333333%;
+}
+.teams-split {
+  width: 50%;
+}
+
+// サッカー関連のデザイン
+.position {
+  margin-top: 20px;
+  text-align: center;
+  background: #007bff;
+  color: #fff;
 }
