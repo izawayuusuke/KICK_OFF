@@ -15,6 +15,11 @@ class ApplicationController < ActionController::Base
       @post = Post.find(params[:post_id])
     end
 
+    def all_leagues
+      @leagues = League.all
+      @teams = Team.all
+    end
+
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     end

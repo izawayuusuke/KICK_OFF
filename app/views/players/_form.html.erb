@@ -1,0 +1,45 @@
+<%= form_for @player do |f| %>
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :height %>
+    <%= f.text_field :height %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :weight %>
+    <%= f.text_field :weight %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :age %>
+    <%= f.text_field :age %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :uniform_number %>
+    <%= f.number_field :uniform_number %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :dominant_foot %>
+    <%= f.select :dominant_foot, Player.dominant_foots.keys
+        .map { |k| [I18n.t("enums.player.dominant_foot.#{k}"),] } %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :position %>
+    <%= f.select :position, Player.positions.keys %>
+  </div>
+
+  <% if current_page?(team_path) %>
+    <%= f.fields_for :belongs do |belong| %>
+      <%= belong.collection_select :team_id, Team.all, :id, :name %>
+    <% end %>
+  <% end %>
+
+  <%= f.submit "作成する" %>
+<% end %>

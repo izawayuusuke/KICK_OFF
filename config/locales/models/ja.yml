@@ -31,3 +31,16 @@ ja:
         uniform_number: 背番号
         dominant_foot: 利き足
         position: ポジション
+      belong:
+        team_name: 所属チーム
+  enums:
+    league:
+      classification:
+        domestic: 国内
+        abroad: 海外
+        representative: 代表
+    player:
+      dominant_foot:
+        right_foot: 右足
+        left_foot: 左足
+        both_foot: 両足

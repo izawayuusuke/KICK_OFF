@@ -3,5 +3,5 @@ class League < ApplicationRecord
 
   validates :name, presence: true
 
-  enum classification: { 国内: 1, 海外: 2, 代表: 3 }
+  enum classification: { domestic: 1, abroad: 2, representative: 3 }
 end

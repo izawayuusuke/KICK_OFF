@@ -1,2 +1,30 @@
-<h1>Players#edit</h1>
-<p>Find me in app/views/players/edit.html.erb</p>
+<div class="row">
+  <div class="offset-2 col-5">
+    <%= render 'players/form' %>
+  </div>
+
+  <div class="col-5">
+    <%= form_for [@player, @belong] do |f| %>
+      <div class="form-group">
+        <%= f.label :team_name %>
+        <%= f.collection_select :team_id, Team.all, :id, :name %>
+      </div>
+      <%= f.submit "作成する" %>
+    <% end %>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>所属チーム</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @teams.each do |team| %>
+          <tr>
+            <td><p><%= team.name %></p></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
