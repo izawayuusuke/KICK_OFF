@@ -1,10 +1,9 @@
-<%= render 'leagues/form' %>
+<% if current_user.admin == true %>
+  <%= render 'leagues/form' %>
 
-<div style="padding-top: 50px;"></div>
+  <%= render 'teams/form' %>
+<% end %>
 
-<%= render 'teams/form' %>
-
-<div style="padding-top: 50px;"></div>
 
 <div class="row group-outline text-center">
   <% League.classifications_i18n.each do |key, value| %>

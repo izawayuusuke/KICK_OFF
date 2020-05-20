@@ -19,12 +19,15 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
-  resources :players do
+  resources :players, only: [:show, :edit, :update] do
     resource :belongs, only: [:create]
+  end
+
+  resources :teams do
+    resource :players, only: [:create]
   end
 
   resources :relationships, only: [:create, :destroy]
   resources :rooms, only: [:index, :show, :create,]
-  resources :teams
   resources :leagues
 end

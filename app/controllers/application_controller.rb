@@ -20,6 +20,14 @@ class ApplicationController < ActionController::Base
       @teams = Team.all
     end
 
+    def set_position
+      @players = @team.players
+      @GK = @players.where(position: "GK")
+      @DF = @players.where(position: "DF")
+      @MF = @players.where(position: "MF")
+      @FW = @players.where(position: "FW")
+    end
+
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
     end

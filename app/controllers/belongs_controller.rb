@@ -5,6 +5,9 @@ class BelongsController < ApplicationController
     @belong.player_id = @player.id
     if @belong.save
       redirect_to @player
+    else
+      @teams = @player.teams
+      render "players/edit"
     end
   end
 

@@ -1,24 +1,30 @@
 class PlayersController < ApplicationController
-  before_action :set_player, only: [:show, :edit]
+  before_action :set_player, only: [:show, :edit, :update]
 
   def show
   end
 
   def edit
-    @teams = @player.teams
   end
 
   def create
     @player = Player.new(player_params)
     if @player.save
       flash[:primary] = "選手を作成しました"
-      redirect_to teams_path
+      redirect_to team_path(@player.teams.first)
+    else
+      @team = Team.find(params[:team_id])
+      set_position
+      render "teams/show"
     end
   end
 
   def update
-    if @player.update
+    if @player.update(player_params)
       flash[:primary] = "選手を更新しました"
+      redirect_to @player
+    else
+      render :edit
     end
   end
 
@@ -26,6 +32,7 @@ class PlayersController < ApplicationController
     def set_player
       @player = Player.find(params[:id])
       @belong = Belong.new
+      @teams = @player.teams
     end
 
     def player_params

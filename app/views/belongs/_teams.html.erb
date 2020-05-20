@@ -1,0 +1,15 @@
+<table class="table table-bordered" style="margin-top: 50px;">
+  <thead>
+    <tr>
+      <th>所属チーム</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><p><%= team.name %></p></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

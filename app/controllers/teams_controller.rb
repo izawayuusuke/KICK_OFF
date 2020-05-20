@@ -1,15 +1,10 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :update]
+  before_action :set_position, only: [:show]
 
   def show
     @player = Player.new
     @player.belongs.new
-    @players = @team.players
-    @GK = @players.where(position: "GK")
-    @DF = @players.where(position: "DF")
-    @MF = @players.where(position: "MF")
-    @FW = @players.where(position: "FW")
-
   end
 
   def create

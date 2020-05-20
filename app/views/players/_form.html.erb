@@ -1,4 +1,4 @@
-<%= form_for @player do |f| %>
+<%= form_for [@team, @player], builder: FormHelper::CustomFormBuilder do |f| %>
   <div class="form-group">
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -27,7 +27,7 @@
   <div class="form-group">
     <%= f.label :dominant_foot %>
     <%= f.select :dominant_foot, Player.dominant_foots.keys
-        .map { |k| [I18n.t("enums.player.dominant_foot.#{k}"),] } %>
+        .map { |k| [I18n.t("enums.player.dominant_foot.#{k}"), k] } %>
   </div>
 
   <div class="form-group">
@@ -35,11 +35,14 @@
     <%= f.select :position, Player.positions.keys %>
   </div>
 
-  <% if current_page?(team_path) %>
-    <%= f.fields_for :belongs do |belong| %>
-      <%= belong.collection_select :team_id, Team.all, :id, :name %>
-    <% end %>
+  <% if controller.controller_name == "teams" %>
+    <div class="form-group">
+      <%= f.fields_for :belongs do |belong| %>
+        <%= belong.label :team_name %>
+        <%= belong.collection_select :team_id, Team.all, :id, :name %>
+      <% end %>
+    </div>
   <% end %>
 
-  <%= f.submit "作成する" %>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>
