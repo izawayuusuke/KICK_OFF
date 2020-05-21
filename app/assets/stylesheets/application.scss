@@ -45,11 +45,15 @@ li {
   font-weight: bold;
 }
 
+// ナビ アイコン
 .nav-item {
   margin: 0 10px;
   a {
     color: #fff;
   }
+}
+.fa-futbol:before {
+  color: #000;
 }
 
 // 画像サイズ
@@ -68,6 +72,11 @@ li {
   max-width: 105%;
   height: 200px;
   margin-bottom: 10px;
+}
+.emblem-image {
+  width: 80px;
+  height: 80px;
+  padding: 0 0 6px 3px;
 }
 
 .post-area,
@@ -161,12 +170,19 @@ li {
   }
 }
 
-.group-outline {
+.group-outline,
+.outline,
+.team-outline {
   border: 1px solid gray;
+  font-size: 20px;
 }
 .outline {
-  border: 1px solid gray;
-  padding: 10px 0;
+  height: 50px;
+  line-height: 50px;
+}
+.team-outline {
+  height: 80px;
+  line-height: 80px;
 }
 
 .leagues-split {

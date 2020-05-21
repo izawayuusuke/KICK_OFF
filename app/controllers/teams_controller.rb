@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: [:show, :update]
+  before_action :set_team, exept: [:create]
   before_action :set_position, only: [:show]
 
   def show
@@ -17,6 +17,9 @@ class TeamsController < ApplicationController
       @league = League.new
       render "leagues/index"
     end
+  end
+
+  def edit
   end
 
   def update

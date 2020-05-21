@@ -1,5 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update]
+  before_action :admin_user?, only: [:edit, :update]
 
   def show
   end
@@ -33,6 +34,12 @@ class PlayersController < ApplicationController
       @player = Player.find(params[:id])
       @belong = Belong.new
       @teams = @player.teams
+    end
+
+    def admin_user?
+      unless current_user.admin == true
+        redirect_to @player
+      end
     end
 
     def player_params

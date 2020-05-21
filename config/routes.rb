@@ -20,14 +20,16 @@ Rails.application.routes.draw do
   end
 
   resources :players, only: [:show, :edit, :update] do
-    resource :belongs, only: [:create]
+    resources :belongs, only: [:create]
   end
 
   resources :teams do
     resource :players, only: [:create]
+    resources :belongs, only: [:destroy]
   end
 
   resources :relationships, only: [:create, :destroy]
   resources :rooms, only: [:index, :show, :create,]
   resources :leagues
+
 end

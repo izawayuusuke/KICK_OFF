@@ -1,7 +1,7 @@
 <h2>
   <%= @player.name %>
-  <% if current_user.admin == true %>
-    <%= link_to "編集", edit_player_path(@player), class: "btn btn-primary" %>
+  <% if user_signed_in? && current_user.admin == true %>
+    <%= link_to "編集", edit_player_path(@player), class: "btn btn-success" %>
   <% end %>
 </h1>
 <table class="table table-bordered">

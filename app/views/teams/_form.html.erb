@@ -10,5 +10,11 @@
     <%= f.collection_select :league_id, League.all, :id, :name %>
   </div>
 
-  <%= f.submit class: "btn btn-primary" %>
+  <%= render 'teams/emblem', team: @team %>
+
+  <div class="form-group" id="emblem_img">
+    <%= f.label :emblem, "エンブレムを選択", class: "btn btn-primary" %>
+    <%= f.file_field :emblem, style: "display: none;" %>
+  </div>
+  <%= f.submit class: "btn btn-success" %>
 <% end %>

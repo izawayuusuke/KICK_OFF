@@ -23,6 +23,7 @@ ja:
       team:
         name: チーム名
         league_id: リーグ
+        emblem: エンブレム
       player:
         name: 名前
         height: 身長

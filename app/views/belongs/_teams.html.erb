@@ -8,7 +8,14 @@
   <tbody>
     <% @teams.each do |team| %>
       <tr>
-        <td><p><%= team.name %></p></td>
+        <td>
+          <%= link_to team.name, team_path(team) %>
+        </td>
+        <% if user_signed_in? && current_user.admin == true %>
+          <td>
+            <%= link_to "削除する", team_belong_path(team), method: :delete, class: "btn btn-danger" %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
