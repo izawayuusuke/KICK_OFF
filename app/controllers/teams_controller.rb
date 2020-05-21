@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, exept: [:create]
+  before_action :set_team, except: [:create]
   before_action :set_position, only: [:show]
 
   def show

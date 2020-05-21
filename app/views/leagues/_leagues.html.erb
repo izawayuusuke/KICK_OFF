@@ -1,0 +1,28 @@
+<div class="row group-outline text-center">
+  <% League.classifications_i18n.each do |key, value| %>
+    <%= link_to league_path(key), class: "leagues-split" do %>
+      <div class="outline">
+        <%= value %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% @leagues.each do |league| %>
+    <%= link_to league_path(league), class: "leagues-split" do %>
+      <div class="outline">
+        <%= league.name %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="row group-outline">
+  <% @teams.each do |team| %>
+    <%= link_to team_path(team), class: "teams-split" do %>
+      <div class="team-outline">
+        <%= render 'teams/emblem', team: team %>
+        <%= team.name %>
+      </div>
+    <% end %>
+  <% end %>
+</div>
