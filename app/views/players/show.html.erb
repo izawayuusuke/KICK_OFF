@@ -1,0 +1,40 @@
+<h2>
+  <%= @player.name %>
+  <% if user_signed_in? && current_user.admin == true %>
+    <%= link_to "編集", edit_player_path(@player), class: "btn btn-success" %>
+  <% end %>
+</h1>
+<table class="table table-bordered">
+  <tr>
+    <th>背番号</th>
+    <td><%= @player.uniform_number %></td>
+  </tr>
+  <tr>
+    <th>ポジション</th>
+    <td><%= @player.position %></td>
+  </tr>
+  <tr>
+    <th>名前</th>
+    <td><%= @player.name %></td>
+  </tr>
+  <tr>
+    <th>身長</th>
+    <td><%= @player.height %>cm</td>
+  </tr>
+  <tr>
+    <th>体重</th>
+    <td><%= @player.weight %>kg</td>
+  </tr>
+  <tr>
+    <th>年齢</th>
+    <td><%= @player.age %>歳</td>
+  </tr>
+  <tr>
+    <th>利き足</th>
+    <td><%= @player.dominant_foot_i18n %></td>
+  </tr>
+</table>
+
+<div class="col-5">
+  <%= render 'belongs/teams' %>
+</div>

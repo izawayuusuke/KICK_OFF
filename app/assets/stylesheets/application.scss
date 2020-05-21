@@ -45,11 +45,15 @@ li {
   font-weight: bold;
 }
 
+// ナビ アイコン
 .nav-item {
   margin: 0 10px;
   a {
     color: #fff;
   }
+}
+.fa-futbol:before {
+  color: #000;
 }
 
 // 画像サイズ
@@ -69,6 +73,11 @@ li {
   height: 200px;
   margin-bottom: 10px;
 }
+.emblem-image {
+  width: 80px;
+  height: 80px;
+  padding: 0 0 6px 3px;
+}
 
 .post-area,
 .comment-area,
@@ -78,9 +87,6 @@ li {
 }
 
 // フィールド
-.form-control {
-  width: 70%;
-}
 .custom-select {
   width: 50%;
   margin-left: 5%;
@@ -109,7 +115,8 @@ li {
 }
 
 .no-relation,
-.no-posts {
+.no-posts,
+.no-messages {
   font-size: 20px;
   color: blue;
   font-weight: bold;
@@ -160,6 +167,41 @@ li {
   }
 }
 
-.outline {
+.group-outline,
+.outline,
+.team-outline {
   border: 1px solid gray;
+}
+.group-outline {
+  font-size: 20px;
+}
+.outline {
+  height: 50px;
+  line-height: 50px;
+}
+.team-outline {
+  height: 80px;
+  line-height: 80px;
+  font-size: 20px;
+}
+
+.leagues-split {
+  width: 33.3333333333%;
+}
+.teams-split {
+  width: 50%;
+}
+
+// サッカー関連のデザイン
+.position {
+  margin-top: 20px;
+  text-align: center;
+  background: #007bff;
+  color: #fff;
+}
+.circle {
+  width: 70px;
+  height: 70px;
+  border-radius: 70px;
+  background: blue;
 }

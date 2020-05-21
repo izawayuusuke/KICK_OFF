@@ -5,28 +5,38 @@
         <%= image_tag('title_logo.png', width: 80, class: "logo") %>
       <% end %>
 
-      <% if user_signed_in? %>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <%= link_to root_path do %>
-              <i class="far fa-bell"> notification</i>
+            <%= link_to leagues_path do %>
+              <i class="far fa-futbol"> フットボール</i>
             <% end %>
           </li>
-          <li class="nav-item">
-            <%= link_to rooms_path do %>
-              <i class="far fa-envelope"> message</i>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to current_user do %>
-              <i class="far fa-user"> Profile</i>
-            <% end %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Log out", destroy_user_session_path, method: :delete %>
-          </li>
+          <% if user_signed_in? %>
+            <li class="nav-item">
+              <%= link_to root_path do %>
+                <i class="far fa-bell"> 通知</i>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to rooms_path do %>
+                <i class="far fa-envelope"> メッセージ</i>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to current_user do %>
+                <i class="far fa-user"> プロフィール</i>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            </li>
+
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path %>
+            </li>
+          <% end %>
         </ul>
-      <% end %>
     </div>
   </nav>
 </header>

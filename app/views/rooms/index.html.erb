@@ -14,3 +14,7 @@
       </ul>
     </div>
 <% end %>
+
+<% if @others.blank? %>
+  <p class="text-center no-messages">メッセージがありません</p>
+<% end %>
