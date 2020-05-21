@@ -1,7 +1,7 @@
 <% if user_signed_in? && current_user.admin == true %>
 <div class="row">
   <div class="col-8">
-    <%= render 'leagues' %>
+    <%= render 'leagues/leagues' %>
   </div>
 
   <div class="col-4">
@@ -12,5 +12,5 @@
 </div>
 
 <% else %>
-  <%= render 'leagues' %>
+  <%= render 'leagues/leagues' %>
 <% end %>

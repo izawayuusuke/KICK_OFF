@@ -11,7 +11,7 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new(player_params)
     if @player.save
-      flash[:primary] = "選手を作成しました"
+      flash[:success] = "選手を作成しました"
       redirect_to team_path(@player.teams.first)
     else
       @team = Team.find(params[:team_id])
@@ -22,7 +22,7 @@ class PlayersController < ApplicationController
 
   def update
     if @player.update(player_params)
-      flash[:primary] = "選手を更新しました"
+      flash[:success] = "選手を更新しました"
       redirect_to @player
     else
       render :edit

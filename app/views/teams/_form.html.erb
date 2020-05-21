@@ -1,5 +1,5 @@
 <%= form_for @team, builder: FormHelper::CustomFormBuilder do |f| %>
-  <h4>チーム</h4>
+  <h4 style="padding-top: 20px; color: blue;">チーム</h4>
   <div class="form-group">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -10,7 +10,7 @@
     <%= f.collection_select :league_id, League.all, :id, :name %>
   </div>
 
-  <%= render 'teams/emblem', team: @team %>
+  <%= render 'teams/emblem_image' %>
 
   <div class="form-group" id="emblem_img">
     <%= f.label :emblem, "エンブレムを選択", class: "btn btn-primary" %>

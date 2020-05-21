@@ -7,6 +7,14 @@
   <% end %>
 </h2>
 
+<% if user_signed_in? && current_user.admin == true %>
+  <div class="offset-1">
+    <%= form_for [@team, @player], builder: FormHelper::CustomFormBuilder do |f| %>
+      <%= render 'players/form', f: f %>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="offset-1 col-10">
   <h2 class="position">GK</h2>
   <%= render 'players/index', players: @GK %>
@@ -20,11 +28,3 @@
   <h2 class="position">FW</h2>
   <%= render 'players/index', players: @FW %>
 </div>
-
-<% if user_signed_in? && current_user.admin == true %>
-  <div class="offset-1" style="padding-top: 50px;">
-    <%= form_for [@team, @player], builder: FormHelper::CustomFormBuilder do |f| %>
-      <%= render 'players/form', f: f %>
-    <% end %>
-  </div>
-<% end %>

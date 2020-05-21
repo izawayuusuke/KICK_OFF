@@ -13,7 +13,7 @@ class LeaguesController < ApplicationController
   def create
     @league = League.new(league_params)
     if @league.save
-      flash[:primary] = "リーグを作成しました"
+      flash[:success] = "リーグを作成しました"
       redirect_to @league
     else
       all_leagues
@@ -24,7 +24,7 @@ class LeaguesController < ApplicationController
 
   def update
     if @league.update(league_params)
-      flash[:primary] = "リーグを更新しました"
+      flash[:success] = "リーグを更新しました"
       redirect_to @league
     else
       all_leagues

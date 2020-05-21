@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-4">
     <%= render 'profile', user: @user %>
-    <div class="btn">
+    <div style="display: inline-block;">
       <% if @user == current_user %>
-        <%= link_to '編集する', edit_user_path(@user), class: "btn-outline-primary" %>
+        <%= link_to '編集する', edit_user_path(@user), class: "btn btn-sm btn-outline-primary" %>
       <% else %>
         <%= render 'relationships/follow_button', user: @user %>
       <% end %>

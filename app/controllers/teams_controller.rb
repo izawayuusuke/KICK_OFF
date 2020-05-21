@@ -10,7 +10,7 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     if @team.save
-      flash[:primary] = "チームを作成しました"
+      flash[:success] = "チームを作成しました"
       redirect_to @team
     else
       all_leagues
@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-      flash[:primary] = "チームを更新しました"
+      flash[:success] = "チームを更新しました"
       redirect_to @team
     else
       render :show
