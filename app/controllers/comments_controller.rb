@@ -3,7 +3,9 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.new(comment_params)
     @comment.user_id = current_user.id
-    @comment.save
+    if @comment.save
+      @post.create_notification_comment!(current_user, @comment.id)
+    end
     @comments = @post.comments.order(created_at: :desc)
   end
 
