@@ -10,13 +10,23 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-//= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require jquery.jscroll.min.js
+
+$(document).on("turbolinks:load", function () {
+  $(".jscroll").jscroll({
+    // 無限に追加する要素は、どこに入れる？
+    contentSelector: ".jscroll",
+    // 次のページにいくためのリンクの場所は？ ＞aタグの指定
+    nextSelector: "a.next",
+  });
+});
 
 // プロフィール画像プレビュー
 $(document).on("turbolinks:load", function () {
