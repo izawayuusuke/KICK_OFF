@@ -7,34 +7,38 @@
     <%= link_to '投稿してみよう', posts_path, class: "btn btn-outline-primary" %>
   <% end %>
 <% end %>
-<% posts.each do |post| %>
-<div id="post_<%= post.id %>">
-  <div class="post-area">
-    <div class="row col-12">
-      <%= render 'users/profile', user: post.user %>
-      <ul id="sharing_<%= post.id %>">
-        <%= render 'shares/sharing', post: post %>
-      </ul>
-    </div>
-      <div class="offset-2">
-        <%= link_to post_path(post) do %>
-          <%= simple_format(post.content) %>
-          <div>
-            <% if post.image? %>
-              <%= image_tag post.image.url, class: "image-size" %>
-            <% end %>
-          </div>
-        <% end %>
-        <div class="row">
-          <div id="likes_<%= post.id %>">
-            <%= render 'likes/like', post: post %>
-          </div>
-          <div id="shares_<%= post.id %>" class="offset-1">
-            <%= render 'shares/share', post: post %>
-          </div>
-          <%= render 'posts/delete_post', post: post %>
-        </div>
+
+<div class="jscroll">
+  <% posts.each do |post| %>
+  <div id="post_<%= post.id %>" class="jscroll">
+    <div class="post-area">
+      <div class="row col-12">
+        <%= render 'users/profile', user: post.user %>
+        <ul id="sharing_<%= post.id %>">
+          <%= render 'shares/sharing', post: post %>
+        </ul>
       </div>
+        <div class="offset-2">
+          <%= link_to post_path(post) do %>
+            <%= simple_format(post.content) %>
+            <div>
+              <% if post.image? %>
+                <%= image_tag post.image.url, class: "image-size" %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="row">
+            <div id="likes_<%= post.id %>">
+              <%= render 'likes/like', post: post %>
+            </div>
+            <div id="shares_<%= post.id %>" class="offset-1">
+              <%= render 'shares/share', post: post %>
+            </div>
+            <%= render 'posts/delete_post', post: post %>
+          </div>
+        </div>
+    </div>
   </div>
+  <% end %>
+  <%= link_to_next_page posts, "次へ", class: "next" %>
 </div>
-<% end %>

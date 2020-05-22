@@ -29,7 +29,7 @@
           </span>
         <% end %>
           にコメントしました
-          <div class="offset-1">
+          <div class="offset-1" style="padding-top: 10px;">
             <%= simple_format(Comment.find_by(id: notification.comment.id).comment) %>
           </div>
     <% end %>
