@@ -52,7 +52,7 @@ class UsersController < ApplicationController
 
   def likes
     @like_posts = Post.joins(:likes).where(likes: { user_id: @user.id })
-                  .order(created_at: :desc)
+                  .order(created_at: :desc).page(params[:page]).per(10)
   end
 
   private

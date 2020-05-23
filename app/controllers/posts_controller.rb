@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :post_find, only: [:show, :destroy]
   def index
-    @posts = Post.all.order(created_at: "DESC").page(params[:page]).without_count.per(1)
+    @posts = Post.all.order(created_at: "DESC").page(params[:page]).without_count.per(10)
     @post = Post.new
     @user = current_user
   end
