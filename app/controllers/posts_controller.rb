@@ -1,14 +1,14 @@
 class PostsController < ApplicationController
   before_action :post_find, only: [:show, :destroy]
+
   def index
-    @posts = Post.all.order(created_at: "DESC").page(params[:page]).without_count.per(10)
+    @posts = Post.all.recent.paginate(params, 10)
     @post = Post.new
-    @user = current_user
   end
 
   def show
     @comment = Comment.new
-    @comments = @post.comments.order(created_at: "DESC")
+    @comments = @post.comments.recent.paginate(params, 5)
   end
 
   def create
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
       flash[:success] = "投稿しました"
       redirect_to posts_path
     else
-      @posts = Post.all.order(created_at: "DESC")
+      @posts = Post.all.recent.paginate(params, 10)
       render :index
     end
   end

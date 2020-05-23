@@ -13,7 +13,7 @@
   <div id="post_<%= post.id %>" class="jscroll">
     <div class="post-area">
       <div class="row col-12">
-        <%= render 'users/profile', user: post.user %>
+        <%= render 'users/profile_image', user: post.user %>
         <ul id="sharing_<%= post.id %>">
           <%= render 'shares/sharing', post: post %>
         </ul>
@@ -27,8 +27,12 @@
               <% end %>
             </div>
           <% end %>
+
           <div class="row">
-            <div id="likes_<%= post.id %>">
+            <div class="offset-1">
+              <%= render 'comments/count', post: post %>
+            </div>
+            <div id="likes_<%= post.id %>" class="offset-1">
               <%= render 'likes/like', post: post %>
             </div>
             <div id="shares_<%= post.id %>" class="offset-1">

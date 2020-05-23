@@ -17,6 +17,8 @@ ja:
       post:
         content: 投稿内容
         image: 画像
+      comment:
+        comment: コメント
       league:
         name: リーグ名
         classification: 分類

@@ -1,6 +1,7 @@
 class LeaguesController < ApplicationController
   before_action :new_league_team, except: [:create]
   before_action :set_league, only: [:show, :update]
+  before_action :admin_user?, only: [:update]
 
   def index
     all_leagues
@@ -8,6 +9,7 @@ class LeaguesController < ApplicationController
 
   def show
     choose_league_class(@league.classification)
+    @teams = @league.teams
   end
 
   def create
@@ -27,7 +29,8 @@ class LeaguesController < ApplicationController
       flash[:success] = "リーグを更新しました"
       redirect_to @league
     else
-      all_leagues
+      choose_league_class(@league.classification)
+      @teams = @league.teams
       render :show
     end
   end
@@ -55,7 +58,7 @@ class LeaguesController < ApplicationController
     end
 
     def choose_league_class(classification)
-      @leagues = League.all.where(classification: classification)
+      @leagues = League.where(classification: classification)
       @teams = [] # リーグに紐づいたチームの受け皿
       @leagues.map { |league| @teams += league.teams }
     end

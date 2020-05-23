@@ -5,7 +5,7 @@
   <div class="group-outline">
     <span>
       <%= link_to user_path(visitor) do %>
-        <%= render 'users/profile', user: visitor %>
+        <%= render 'users/profile_image', user: visitor %>
         <strong><%= visitor.name %></strong>
       <% end %>
       さんが
@@ -23,7 +23,7 @@
         <% else %>
           <span>
             <%= link_to post_path(notification.post) do %>
-              <%= render 'users/profile', user: notification.post.user %>
+              <%= render 'users/profile_image', user: notification.post.user %>
               <%= notification.post.user.name %>さんの投稿
             <% end %>
           </span>

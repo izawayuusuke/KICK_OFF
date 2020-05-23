@@ -1,13 +1,17 @@
 <% if user_signed_in? && current_user.admin == true %>
 <div class="row">
-  <div class="col-8">
+  <div class="col-9">
     <%= render 'leagues/leagues' %>
   </div>
 
-  <div class="col-4">
-    <%= render 'leagues/form' %>
+  <div class="col-3">
+    <div class="form-outline">
+      <%= render 'leagues/form' %>
+    </div>
 
-    <%= render 'teams/form' %>
+    <div style="padding-top: 20px;">
+      <%= render 'teams/form' %>
+    </div>
   </div>
 </div>
 

@@ -1,4 +1,4 @@
-<%= form_with model:[@post, @comment], data: { remote: true } do |f| %>
+<%= form_with model:[@post, @comment], builder: FormHelper::CustomFormBuilder do |f| %>
   <div class="field">
     <%= f.text_area :comment, rows: "1" %>
   </div>
