@@ -1,20 +1,23 @@
 <h1 class="text-center">メッセージ</h1>
-<% @others.each do |other| %>
-    <div class="row outline">
-      <%= render 'users/profile_image', user: other.user %>
-      <ul class="col-10">
-        <%= link_to room_path(other.room_id) do %>
-          <li>
-            <%= other.user.name %>
-          </li>
-          <li>
-            <%= simple_format(other.user.introduction) %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-<% end %>
 
-<% if @others.blank? %>
-  <p class="text-center no-messages">メッセージがありません</p>
-<% end %>
+<div class="col-8 offset-2">
+  <% @others.each do |other| %>
+    <%= link_to room_path(other.room_id) do %>
+      <div class="row group-outline">
+        <%= render 'users/profile_image', user: other.user %>
+        <ul class="col-10">
+            <li>
+              <%= other.user.name %>
+            </li>
+            <li>
+              <%= other.user.messages.last.content %>
+            </li>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if @others.blank? %>
+    <p class="text-center no-messages">メッセージがありません</p>
+  <% end %>
+</div>

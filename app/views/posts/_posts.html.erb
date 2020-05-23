@@ -1,7 +1,7 @@
 <% if posts.blank? %>
   <p class="no-posts">投稿がありません</p>
 
-  <% if current_page?("/users/#{@user.id}/likes") %>
+  <% if controller.controller_name == "users" && controller.action_name == "likes" %>
     <%= link_to '投稿にいいねをしよう', posts_path, class: "btn btn-outline-primary" %>
   <% else %>
     <%= link_to '投稿してみよう', posts_path, class: "btn btn-outline-primary" %>

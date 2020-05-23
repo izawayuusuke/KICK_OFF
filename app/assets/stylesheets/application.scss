@@ -59,8 +59,15 @@ li {
 }
 .n-circle {
   position: relative;
-  top: -11px;
-  right: 49px;
+  top: -12px;
+  right: 52px;
+  color: red;
+  font-size: 13px;
+}
+.s-circle {
+  position: relative;
+  top: -12px;
+  right: 103px;
   color: red;
   font-size: 13px;
 }
@@ -99,6 +106,13 @@ li {
 .custom-select {
   width: 50%;
   margin-left: 5%;
+}
+
+// フラッシュメッセージ
+.alert-notice {
+  color: #000;
+  background-color: #ffff33;
+  border-color: #ffff33;
 }
 
 // エラーメッセージ
@@ -140,7 +154,6 @@ li {
 }
 .group-outline {
   font-size: 16px;
-  font-weight: bold;
 }
 .outline {
   height: 50px;
