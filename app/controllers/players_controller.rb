@@ -36,12 +36,6 @@ class PlayersController < ApplicationController
       @teams = @player.teams
     end
 
-    def admin_user?
-      unless current_user.admin == true
-        redirect_to @player
-      end
-    end
-
     def player_params
       params.require(:player).permit(:name, :birthday, :age,
                   :height, :weight, :dominant_foot, :position, :uniform_number,

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-4">
-    <%= render 'profile', user: @user %>
+    <%= render 'profile_image', user: @user %>
     <div style="display: inline-block;">
       <% if @user == current_user %>
         <%= link_to '編集する', edit_user_path(@user), class: "btn btn-sm btn-outline-primary" %>

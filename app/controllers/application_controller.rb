@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
       new_user_session_path
     end
 
+    def admin_user?
+      redirect_back(fallback_location: root_path) unless current_user.admin == true
+    end
+
     def set_post
       @post = Post.find(params[:post_id])
     end
@@ -21,7 +25,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_position
-      @players = @team.players
+      @players = @team.players.order(uniform_number: :asc)
       @GK = @players.where(position: "GK")
       @DF = @players.where(position: "DF")
       @MF = @players.where(position: "MF")

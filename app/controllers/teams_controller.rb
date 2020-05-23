@@ -1,6 +1,8 @@
 class TeamsController < ApplicationController
   before_action :set_team, except: [:create]
   before_action :set_position, only: [:show]
+  before_action :admin_user?, only: [:edit, :update]
+
 
   def show
     @player = Player.new
@@ -35,6 +37,11 @@ class TeamsController < ApplicationController
     def set_team
       @team = Team.find(params[:id])
     end
+
+    def admin_user?
+      redirect_to @team unless current_user.admin == true
+    end
+
     def team_params
       params.require(:team).permit(:name, :emblem, :league_id)
     end

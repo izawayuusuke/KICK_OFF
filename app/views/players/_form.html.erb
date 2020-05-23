@@ -38,7 +38,8 @@
       <%= f.select :position, Player.positions.keys %>
     </div>
 
-    <% if controller.controller_name == "teams" %>
+    <% if controller.controller_name == "teams" ||
+        controller.controller_name == "players" && controller.action_name == "create" %>
       <div class="form-group">
         <%= f.fields_for :belongs do |belong| %>
           <%= belong.label :team_name %>

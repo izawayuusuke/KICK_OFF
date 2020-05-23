@@ -1,7 +1,7 @@
 <h1 class="text-center">メッセージ</h1>
 <% @others.each do |other| %>
     <div class="row outline">
-      <%= render 'users/profile', user: other.user %>
+      <%= render 'users/profile_image', user: other.user %>
       <ul class="col-10">
         <%= link_to room_path(other.room_id) do %>
           <li>

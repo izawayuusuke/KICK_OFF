@@ -1,0 +1,43 @@
+// メッセージ
+.message-left {
+  text-align: left;
+  padding-right: 40%;
+}
+.L-message-color {
+  background: #dfdfdf;
+  color: #000;
+  padding: 10px;
+  border-radius: 50px 50px 50px 0;
+}
+.message-right {
+  text-align: right;
+  padding-left: 40%;
+}
+.R-message-color {
+  background: #0099ff;
+  color: #fff;
+  padding: 10px;
+  border-radius: 50px 50px 0 50px;
+}
+.force-message-left {
+  text-align: left !important;
+  padding-right: 40%;
+  padding-left: 0 !important;
+  p {
+    background: #dfdfdf;
+    color: #000;
+    padding: 10px;
+    border-radius: 50px 50px 50px 0;
+  }
+}
+.force-message-right {
+  text-align: right !important;
+  padding-left: 40%;
+  padding-right: 0 !important;
+  p {
+    background: #0099ff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50px 50px 0 50px;
+  }
+}
