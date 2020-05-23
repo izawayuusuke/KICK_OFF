@@ -15,7 +15,7 @@
             <li class="nav-item">
               <%= link_to notifications_path do %>
                 <% if unchecked_notifications.any? %>
-                  <i class="far fa-bell"></i> 通知
+                  <i class="far fa-bell"> 通知</i>
                   <i class="fas fa-circle n-circle"></i>
 
                 <% else %>
@@ -25,7 +25,12 @@
             </li>
             <li class="nav-item">
               <%= link_to rooms_path do %>
-                <i class="far fa-envelope"> メッセージ</i>
+                <% if unchecked_messages.any? %>
+                  <i class="far fa-envelope"> メッセージ</i>
+                  <i class="fas fa-circle s-circle"></i>
+                <% else %>
+                  <i class="far fa-envelope"> メッセージ</i>
+                <% end %>
               <% end %>
             </li>
             <li class="nav-item">

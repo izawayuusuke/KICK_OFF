@@ -3,10 +3,19 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = current_user.rooms
-    @others = [] #メッセージの送信先一覧を格納
-    @rooms.each do |room| # メッセージの相手を取得する
-      @entry = room.entries.where.not( user_id: current_user.id ).first
+    @others = [] # メッセージの送信先一覧を格納
+    @messages = [] # 相手からの全てのメッセージを格納
+    @rooms.each do |room|
+      @entry = room.entries.where.not(user_id: current_user.id).first
       @others.push(@entry)
+
+      @messages += room.messages.where(checked: false)
+                      .where.not(user_id: current_user.id)
+    end
+
+    # メッセージを見たら確認済みにする
+    @messages.each do |message|
+      message.update_attributes(checked: true)
     end
   end
 
