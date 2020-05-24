@@ -4,11 +4,10 @@ Rails.application.configure do
   # Code is not reloaded between requests.
   config.action_mailer.default_url_options = { host: "kick-off.work" }
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.smtp_settings = {
-    port: 587,
     address: 'smtp.gmail.com',
     domain: 'gmail.com',
+    port: 587,
     user_name: ENV["MAIL_ADDRESS"],
     password: ENV["MAIL_PASSWORD"],
     authentication: :plain,
