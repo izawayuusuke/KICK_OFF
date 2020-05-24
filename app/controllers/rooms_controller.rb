@@ -6,11 +6,11 @@ class RoomsController < ApplicationController
     @others = [] # メッセージの送信先一覧を格納
     @messages = [] # 相手からの全てのメッセージを格納
     @rooms.each do |room|
-      @entry = room.entries.where.not(user_id: current_user.id).first
+      @entry = room.entries.receive(current_user.id).first
       @others.push(@entry)
 
       @messages += room.messages.where(checked: false)
-                      .where.not(user_id: current_user.id)
+                      .receive(current_user.id)
     end
 
     # メッセージを見たら確認済みにする
@@ -24,7 +24,7 @@ class RoomsController < ApplicationController
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @messages = @room.messages
       @entries = @room.entries
-      @other = @room.entries.where.not( user_id: current_user.id ).first
+      @other = @room.entries.receive(current_user.id).first
     else
       redirect_back(fallback_location: root_path)
     end

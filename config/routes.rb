@@ -32,4 +32,8 @@ Rails.application.routes.draw do
   resources :rooms, only: [:index, :show, :create]
   resources :leagues, only: [:index, :show, :create, :update]
   resources :notifications, only: [:index]
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "letter_opener"
+  end
 end

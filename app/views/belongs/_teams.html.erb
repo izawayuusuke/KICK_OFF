@@ -2,6 +2,10 @@
   <thead>
     <tr>
       <th>所属チーム</th>
+      <% if user_signed_in? && current_user.admin == true %>
+        <th></th>
+      <% end %>
+
     </tr>
   </thead>
 
@@ -10,11 +14,14 @@
       <tr>
         <td>
           <%= link_to team.name, team_path(team) %>
-          <% if user_signed_in? && current_user.admin == true %>
+        </td>
+
+        <% if user_signed_in? && current_user.admin == true %>
+          <td>
             <%= link_to "削除する", team_belong_path(team), method: :delete,
                 data: { confirm: "削除しますか？"}, class: "btn btn-danger offset-1" %>
-          <% end %>
-        </td>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
