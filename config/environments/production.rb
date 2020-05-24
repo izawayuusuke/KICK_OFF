@@ -2,6 +2,18 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
+  config.action_mailer.default_url_options = { host: "kick-off.work" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+    port: 587,
+    address: 'smtp.gmail.com',
+    domain: 'gmail.com',
+    user_name: ENV[MAIL_ADDRESS],
+    password: ENV[MAIL_PASSWORD],
+    authentication: :login
+  }
+
   config.cache_classes = true
 
   # Eager load code on boot. This eager loads most of Rails and
@@ -47,7 +59,7 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = ['http://18.181.100.147/']
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.

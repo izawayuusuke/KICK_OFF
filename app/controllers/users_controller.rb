@@ -1,12 +1,14 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user
+  before_action :set_user, only: [:show, :following, :followers, :likes]
+  before_action :correct_user?, only: [:edit, :update]
+
   def show
     # ユーザーがシェアした投稿とユーザーの投稿を同時に取得する
     @posts = Post.left_joins(:shares).where(shares: { user_id: @user.id })
               .or(
               Post.left_joins(:shares).where(user_id: @user.id))
-              .order(created_at: :desc)
+              .recent.paginate(params, 10)
 
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
@@ -32,6 +34,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
+      flash[:success] = "プロフィールを更新しました"
       redirect_to user_path(@user)
     else
       render :edit
@@ -48,12 +51,19 @@ class UsersController < ApplicationController
 
   def likes
     @like_posts = Post.joins(:likes).where(likes: { user_id: @user.id })
-                  .order(created_at: :desc)
+                  .recent.page(params[:page]).per(10)
   end
 
   private
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def correct_user?
+      @user = User.find(params[:id])
+      unless @user == current_user
+        redirect_to user_path(current_user)
+      end
     end
 
     def user_params

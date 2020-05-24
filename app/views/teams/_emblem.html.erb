@@ -1,0 +1,5 @@
+<% if team.emblem? %>
+  <%= image_tag team.emblem.url, class: "emblem-image" %>
+<% else %>
+  <%= image_tag "no_image.png", class: "emblem-image" %>
+<% end %>

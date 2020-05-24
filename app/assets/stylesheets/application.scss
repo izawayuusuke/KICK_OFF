@@ -10,6 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require_tree .
+ *= require_self
  */
 // Custom bootstrap variables must be set or imported *before* bootstrap.
 @import "bootstrap";
@@ -45,17 +47,40 @@ li {
   font-weight: bold;
 }
 
+// ナビ アイコン
 .nav-item {
   margin: 0 10px;
   a {
     color: #fff;
   }
 }
+.fa-futbol:before {
+  color: #000;
+}
+.n-circle {
+  position: relative;
+  top: -12px;
+  right: 52px;
+  color: red;
+  font-size: 13px;
+}
+.s-circle {
+  position: relative;
+  top: -12px;
+  right: 103px;
+  color: red;
+  font-size: 13px;
+}
 
 // 画像サイズ
 .profile-image {
   width: 80px;
   height: 80px;
+  border-radius: 50px;
+}
+.image-sm {
+  width: 50px;
+  height: 50px;
   border-radius: 50px;
 }
 .image-size {
@@ -78,12 +103,16 @@ li {
 }
 
 // フィールド
-.form-control {
-  width: 70%;
-}
 .custom-select {
   width: 50%;
   margin-left: 5%;
+}
+
+// フラッシュメッセージ
+.alert-notice {
+  color: #000;
+  background-color: #ffff33;
+  border-color: #ffff33;
 }
 
 // エラーメッセージ
@@ -109,57 +138,40 @@ li {
 }
 
 .no-relation,
-.no-posts {
+.no-posts,
+.no-messages {
   font-size: 20px;
   color: blue;
   font-weight: bold;
   padding-top: 30px;
 }
 
-// メッセージ
-.message-left {
-  text-align: left;
-  padding-right: 40%;
+// ボーダーライン
+.group-outline,
+.outline,
+.team-outline {
+  border: 1px solid gray;
 }
-.L-message-color {
-  background: #dfdfdf;
-  color: #000;
-  padding: 10px;
-  border-radius: 50px 50px 50px 0;
+.group-outline {
+  font-size: 16px;
 }
-.message-right {
-  text-align: right;
-  padding-left: 40%;
+.outline {
+  height: 50px;
+  line-height: 50px;
 }
-.R-message-color {
-  background: #0099ff;
-  color: #fff;
-  padding: 10px;
-  border-radius: 50px 50px 0 50px;
+.team-outline {
+  height: 80px;
+  line-height: 80px;
+  font-size: 18px;
 }
-.force-message-left {
-  text-align: left !important;
-  padding-right: 40%;
-  padding-left: 0 !important;
-  p {
-    background: #dfdfdf;
-    color: #000;
-    padding: 10px;
-    border-radius: 50px 50px 50px 0;
-  }
-}
-.force-message-right {
-  text-align: right !important;
-  padding-left: 40%;
-  padding-right: 0 !important;
-  p {
-    background: #0099ff;
-    color: #fff;
-    padding: 10px;
-    border-radius: 50px 50px 0 50px;
-  }
+.form-outline {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #000;
 }
 
-.outline {
-  border: 1px solid gray;
+.leagues-split {
+  width: 33.3333333333%;
+}
+.teams-split {
+  width: 50%;
 }

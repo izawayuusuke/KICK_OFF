@@ -10,13 +10,23 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery3
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
 //= require_tree .
-//= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require jquery.jscroll.min.js
+
+$(document).on("turbolinks:load", function () {
+  $(".jscroll").jscroll({
+    // 無限に追加する要素は、どこに入れる？
+    contentSelector: ".jscroll",
+    // 次のページにいくためのリンクの場所は？ ＞aタグの指定
+    nextSelector: "a.next",
+  });
+});
 
 // プロフィール画像プレビュー
 $(document).on("turbolinks:load", function () {
@@ -56,6 +66,28 @@ $(document).on("turbolinks:load", function () {
       return function (e) {
         $("#img_prev").attr("src", e.target.result);
         $("#img_prev").attr("title", file.name);
+      };
+    })(file);
+    reader.readAsDataURL(file);
+  });
+});
+
+// プロフィール画像プレビュー
+$(document).on("turbolinks:load", function () {
+  $("#emblem_img").change(function (e) {
+    // ファイルオブジェクトを取得する
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    // 画像でない場合は処理終了
+    if (file.type.indexOf("image") < 0) {
+      alert("画像ファイルを指定してください。");
+      return false;
+    }
+    // アップロードした画像を設定する
+    reader.onload = (function (file) {
+      return function (e) {
+        $("#emblem_img_prev").attr("src", e.target.result);
+        $("#emblem_img_prev").attr("title", file.name);
       };
     })(file);
     reader.readAsDataURL(file);

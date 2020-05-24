@@ -1,0 +1,14 @@
+<%= form_for @league, builder: FormHelper::CustomFormBuilder do |f| %>
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :classification %>
+    <%= f.select :classification, League.classifications.keys
+          .map {|k| [I18n.t("enums.league.classification.#{k}"), k] } %>
+  </div>
+
+  <%= f.submit class: "btn btn-success" %>
+<% end %>

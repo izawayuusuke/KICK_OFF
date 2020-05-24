@@ -1,8 +1,8 @@
-<div class="offset-3">
+<div class="offset-3 col-6">
   <%= form_for @user, builder: FormHelper::CustomFormBuilder do |f| %>
-    <%= render 'profile', user: @user %>
+    <%= render 'profile_image', user: @user %>
 
-    <div class="field", id= 'user_img'>
+    <div class="field", id='user_img'>
       <%= f.label :profile_image, "プロフィール画像を変更", class: "btn btn-primary" %>
       <%= f.file_field :profile_image, style: "display: none;" %>
     </div><br>
@@ -11,7 +11,7 @@
 
     <div class="field">
       <%= f.label :introduction %>
-      <%= f.text_area :introduction, class: "form-control" %>
+      <%= f.text_area :introduction, class: "form-control", rows: 1 %>
     </div><br>
 
     <div class="actions">

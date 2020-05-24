@@ -8,7 +8,7 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -41,7 +41,6 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano3-puma'
@@ -57,6 +56,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec'
   gem 'pry-byebug'
+  gem 'letter_opener_web'
 end
 
 group :test do
@@ -80,4 +80,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
 gem 'rails-i18n'
+gem 'enum_help'
 gem 'dotenv-rails'
+gem 'faker'
+gem 'kaminari'

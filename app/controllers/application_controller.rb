@@ -11,8 +11,25 @@ class ApplicationController < ActionController::Base
       new_user_session_path
     end
 
+    def admin_user?
+      redirect_back(fallback_location: root_path) unless current_user.admin == true
+    end
+
     def set_post
       @post = Post.find(params[:post_id])
+    end
+
+    def all_leagues
+      @leagues = League.all
+      @teams = Team.all
+    end
+
+    def set_position
+      @players = @team.players.order(uniform_number: :asc)
+      @GK = @players.where(position: "GK")
+      @DF = @players.where(position: "DF")
+      @MF = @players.where(position: "MF")
+      @FW = @players.where(position: "FW")
     end
 
     def configure_permitted_parameters

@@ -1,0 +1,18 @@
+<%= form_for @player, builder: FormHelper::CustomFormBuilder do |f| %>
+  <div class="form-outline">
+    <%= render 'players/form', f: f %>
+  </div>
+
+<% end %>
+
+<div class="row offset-1" style="padding-top: 30px;">
+  <%= form_for [@player, @belong] do |f| %>
+    <div class="form-group">
+      <%= f.label :team_name %>
+      <%= f.collection_select :team_id, Team.all, :id, :name %>
+    </div>
+    <%= f.submit class: "btn btn-success" %>
+  <% end %>
+
+  <%= render 'belongs/teams' %>
+</div>

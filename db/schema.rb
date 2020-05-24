@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_15_043003) do
+ActiveRecord::Schema.define(version: 2020_05_21_101213) do
+
+  create_table "belongs", force: :cascade do |t|
+    t.integer "player_id"
+    t.integer "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id", "team_id"], name: "index_belongs_on_player_id_and_team_id", unique: true
+    t.index ["player_id"], name: "index_belongs_on_player_id"
+    t.index ["team_id"], name: "index_belongs_on_team_id"
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer "user_id"
@@ -31,6 +41,13 @@ ActiveRecord::Schema.define(version: 2020_05_15_043003) do
     t.index ["user_id"], name: "index_entries_on_user_id"
   end
 
+  create_table "leagues", force: :cascade do |t|
+    t.string "name"
+    t.integer "classification"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "post_id"
@@ -44,10 +61,38 @@ ActiveRecord::Schema.define(version: 2020_05_15_043003) do
     t.integer "user_id"
     t.integer "room_id"
     t.text "content"
+    t.boolean "checked", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "visitor_id"
+    t.integer "visited_id"
+    t.integer "post_id"
+    t.integer "comment_id"
+    t.string "action", default: "", null: false
+    t.boolean "checked", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_notifications_on_comment_id"
+    t.index ["post_id"], name: "index_notifications_on_post_id"
+    t.index ["visited_id"], name: "index_notifications_on_visited_id"
+    t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
+  end
+
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.integer "age"
+    t.integer "height"
+    t.integer "weight"
+    t.integer "dominant_foot"
+    t.integer "position"
+    t.integer "uniform_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|
@@ -69,7 +114,6 @@ ActiveRecord::Schema.define(version: 2020_05_15_043003) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -83,6 +127,15 @@ ActiveRecord::Schema.define(version: 2020_05_15_043003) do
     t.index ["user_id"], name: "index_shares_on_user_id"
   end
 
+  create_table "teams", force: :cascade do |t|
+    t.integer "league_id"
+    t.string "name"
+    t.string "emblem"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["league_id"], name: "index_teams_on_league_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -93,7 +146,6 @@ ActiveRecord::Schema.define(version: 2020_05_15_043003) do
     t.string "profile_image"
     t.text "introduction"
     t.boolean "admin", default: false
-    t.integer "official_account", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
