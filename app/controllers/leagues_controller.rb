@@ -59,8 +59,8 @@ class LeaguesController < ApplicationController
 
     def choose_league_class(classification)
       @leagues = League.where(classification: classification)
-      @teams = [] # リーグに紐づいたチームの受け皿
-      @leagues.map { |league| @teams += league.teams }
+      @teams = Team.joins(:league)
+        .where(leagues: { classification: classification }).paginate(params, 20)
     end
 
     def league_params

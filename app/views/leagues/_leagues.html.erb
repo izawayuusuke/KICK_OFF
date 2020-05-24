@@ -26,3 +26,10 @@
     <% end %>
   <% end %>
 </div>
+
+<% unless controller.action_name == "show" || controller.controller_name == "teams" %>
+<div style="padding-top: 30px;">
+<%= link_to_prev_page @teams, "前の20件", class: "btn btn-info col-4 offset-1" %>
+<%= link_to_next_page @teams, "次の20件", class: "btn btn-info col-4 offset-7" %>
+</div>
+<% end %>
