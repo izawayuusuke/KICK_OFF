@@ -16,6 +16,8 @@ class PlayersController < ApplicationController
     else
       @team = Team.find(params[:team_id])
       set_position
+      @discussion = Discussion.new
+      @discussions = @team.discussions.paginate(params, 10)
       render "teams/show"
     end
   end

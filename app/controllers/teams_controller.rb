@@ -7,6 +7,8 @@ class TeamsController < ApplicationController
   def show
     @player = Player.new
     @player.belongs.new
+    @discussion = Discussion.new
+    @discussions = @team.discussions.paginate(params, 10)
   end
 
   def create

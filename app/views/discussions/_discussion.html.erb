@@ -1,0 +1,13 @@
+<div class="group-outline">
+  <%= render 'users/profile_image', user: discussion.user %>
+  <%= discussion.user.name %>
+  <div class="offset-2">
+    <%= simple_format(discussion.content) %>
+
+    <% if current_user == discussion.user %>
+      <%= link_to team_discussion_path(@team, discussion), method: :delete do %>
+        <i class="fas fa-trash-alt"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>

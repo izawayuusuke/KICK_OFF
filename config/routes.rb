@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "homes#top"
-  get 'search', to: 'homes#search', as: 'search'
   get 'leagues/domestic'
   get 'leagues/abroad'
   get 'leagues/representative'
@@ -26,6 +25,7 @@ Rails.application.routes.draw do
   resources :teams, only: [:show, :edit, :create, :update] do
     resource :players, only: [:create]
     resources :belongs, only: [:destroy]
+    resources :discussions, only: [:create, :destroy]
   end
 
   resources :relationships, only: [:create, :destroy]

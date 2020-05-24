@@ -1,0 +1,6 @@
+<%= form_for [@team, @discussion], builder: FormHelper::CustomFormBuilder do |f| %>
+  <div class="form-group" style="padding-top: 30px;">
+    <%= f.text_area :content, class: "form-control", rows: 1 %>
+    <%= f.submit "コメントする", class: "btn btn-outline-primary col-3 offset-9" %>
+  </div>
+<% end %>

@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @posts = Post.left_joins(:shares).where(shares: { user_id: @user.id })
               .or(
               Post.left_joins(:shares).where(user_id: @user.id))
-              .recent.paginate(params, 10)
+              .recent.paginate(params, 20)
 
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)

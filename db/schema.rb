@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_101213) do
+ActiveRecord::Schema.define(version: 2020_05_24_092548) do
 
   create_table "belongs", force: :cascade do |t|
     t.integer "player_id"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(version: 2020_05_21_101213) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "discussions", force: :cascade do |t|
+    t.string "content"
+    t.integer "user_id"
+    t.integer "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_discussions_on_team_id"
+    t.index ["user_id"], name: "index_discussions_on_user_id"
   end
 
   create_table "entries", force: :cascade do |t|

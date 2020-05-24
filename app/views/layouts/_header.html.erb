@@ -12,40 +12,9 @@
             <% end %>
           </li>
           <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to notifications_path do %>
-                <% if unchecked_notifications.any? %>
-                  <i class="far fa-bell"> 通知</i>
-                  <i class="fas fa-circle n-circle"></i>
-
-                <% else %>
-                  <i class="far fa-bell"> 通知</i>
-                <% end %>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to rooms_path do %>
-                <% if unchecked_messages.any? %>
-                  <i class="far fa-envelope"> メッセージ</i>
-                  <i class="fas fa-circle s-circle"></i>
-                <% else %>
-                  <i class="far fa-envelope"> メッセージ</i>
-                <% end %>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to current_user do %>
-                <i class="far fa-user"> プロフィール</i>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-            </li>
-
+            <%= render 'layouts/signed_nav' %>
           <% else %>
-            <li class="nav-item">
-              <%= link_to "ログイン", new_user_session_path %>
-            </li>
+            <%= render 'layouts/unsigned_nav' %>
           <% end %>
         </ul>
     </div>

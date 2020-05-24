@@ -26,6 +26,8 @@ ja:
         name: チーム名
         league_id: リーグ
         emblem: エンブレム
+      discussion:
+        content: コメント
       player:
         name: 名前
         height: 身長
