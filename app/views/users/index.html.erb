@@ -1,0 +1,21 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ユーザー</th>
+      <th>プロフィール</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to user do %>
+            <%= render 'profile_image', user: user %>
+            <%= user.name %>
+          <% end %>
+        </td>
+        <td><%= user.introduction %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

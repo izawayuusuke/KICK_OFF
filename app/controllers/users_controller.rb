@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :following, :followers, :likes]
   before_action :correct_user?, only: [:edit, :update]
 
+  def index
+    @users = User.all
+  end
+
   def show
     # ユーザーがシェアした投稿とユーザーの投稿を同時に取得する
     @posts = Post.left_joins(:shares).where(shares: { user_id: @user.id })

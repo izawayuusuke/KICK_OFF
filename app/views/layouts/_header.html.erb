@@ -6,10 +6,15 @@
       <% end %>
 
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <%= link_to leagues_path do %>
-              <i class="far fa-futbol"> フットボール</i>
-            <% end %>
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="far fa-futbol"> サッカー</i></a>
+            <ul class="dropdown-menu text-center" style="background-color: #007bff;">
+              <li class="nav-item">
+                <li style="border-bottom: 1px solid #fff;"><%= link_to "チーム", leagues_path %></li>
+                <li><%= link_to "選手", players_path %></li>
+              </li>
+            </ul>
           </li>
           <% if user_signed_in? %>
             <%= render 'layouts/signed_nav' %>

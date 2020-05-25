@@ -9,6 +9,7 @@
     <% end %>
   <% end %>
 </li>
+
 <li class="nav-item">
   <%= link_to rooms_path do %>
     <% if unchecked_messages.any? %>
@@ -19,11 +20,13 @@
     <% end %>
   <% end %>
 </li>
-<li class="nav-item">
-  <%= link_to current_user do %>
-    <i class="far fa-user"> プロフィール</i>
-  <% end %>
-</li>
-<li class="nav-item">
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+
+<li class="dropdown nav-item">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+      <i class="far fa-user"> アカウント</i></a>
+  <ul class="dropdown-menu text-center" style="background-color: #007bff;">
+    <li><%= link_to "プロフィール", current_user %></li>
+    <li class="drop-item"><%= link_to "ユーザー一覧", users_path %></li>
+    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+  </ul>
 </li>

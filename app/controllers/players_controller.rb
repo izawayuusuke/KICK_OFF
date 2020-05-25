@@ -2,6 +2,10 @@ class PlayersController < ApplicationController
   before_action :set_player, only: [:show, :edit, :update]
   before_action :admin_user?, only: [:edit, :update]
 
+  def index
+    @players = Player.all.paginate(params, 20)
+  end
+
   def show
   end
 
