@@ -1,0 +1,8 @@
+<div class="row">
+  <%= link_to_prev_page @users, "前の20件", class: "btn btn-info col-4 offset-1" %>
+<% if @users.current_page == 1 %>
+  <%= link_to_next_page @users, "次の20件", class: "btn btn-info col-4 offset-7" %>
+<% else %>
+  <%= link_to_next_page @users, "次の20件", class: "btn btn-info col-4 offset-2" %>
+<% end %>
+</div>

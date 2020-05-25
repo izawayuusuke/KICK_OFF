@@ -19,7 +19,7 @@
 @import "font-awesome";
 
 body {
-  padding-top: 160px;
+  padding: 140px 0;
 }
 
 a {
@@ -68,10 +68,17 @@ li {
   color: red;
   font-size: 13px;
 }
-.s-circle {
+.m-circle {
   position: relative;
   top: -12px;
   right: 103px;
+  color: red;
+  font-size: 13px;
+}
+.s-circle {
+  position: relative;
+  top: 7px;
+  right: -11px;
   color: red;
   font-size: 13px;
 }

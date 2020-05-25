@@ -5,12 +5,19 @@
     <%= link_to room_path(other.room_id) do %>
       <div class="row group-outline">
         <%= render 'users/profile_image', user: other.user %>
+        <% if unchecked_other_message(other).any? %>
+          <i class="fas fa-circle s-circle"></i>
+        <% end %>
         <ul class="col-10">
             <li>
               <%= other.user.name %>
             </li>
             <li>
-              <%= other.user.messages.last.content %>
+              <% if other.user.messages.present? %>
+                <%= other.user.messages.last.content %>
+              <% else %>
+                <%= current_user.messages.last.content %>
+              <% end %>
             </li>
         </ul>
       </div>

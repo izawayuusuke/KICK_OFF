@@ -14,8 +14,17 @@
             <%= user.name %>
           <% end %>
         </td>
-        <td><%= user.introduction %></td>
+        <td><%= simple_format(user.introduction) %></td>
+
+        <% if user_signed_in? && current_user.admin == true && user != current_user %>
+          <td>
+            <%= link_to "削除する", user_path(user), method: :delete,
+                  data: { confirm: alert_delete_user }, class: "btn btn-danger" %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= render 'users/paginate' %>

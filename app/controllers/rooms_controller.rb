@@ -4,18 +4,9 @@ class RoomsController < ApplicationController
   def index
     @rooms = current_user.rooms
     @others = [] # メッセージの送信先一覧を格納
-    @messages = [] # 相手からの全てのメッセージを格納
     @rooms.each do |room|
-      @entry = room.entries.receive(current_user.id).first
+      @entry = room.entries.exclude(current_user.id).first
       @others.push(@entry)
-
-      @messages += room.messages.where(checked: false)
-                      .receive(current_user.id)
-    end
-
-    # メッセージを見たら確認済みにする
-    @messages.each do |message|
-      message.update_attributes(checked: true)
     end
   end
 
@@ -24,11 +15,18 @@ class RoomsController < ApplicationController
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @messages = @room.messages
       @entries = @room.entries
-      @other = @room.entries.receive(current_user.id).first
+      @other = @room.entries.exclude(current_user.id).first
+
+      # メッセージを見たら確認済みにする
+      @messages.each do |message|
+        message.update_attributes(checked: true)
+      end
     else
       redirect_back(fallback_location: root_path)
     end
   end
+
+
 
   def create
     @room = Room.create

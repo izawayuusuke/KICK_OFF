@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user?, only: [:edit, :update]
 
   def index
-    @users = User.all
+    @users = User.all.paginate(params, 10)
   end
 
   def show
@@ -43,6 +43,11 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to users_path
   end
 
   def following
