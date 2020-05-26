@@ -19,12 +19,12 @@ RSpec.describe Relationship, type: :model do
   end
 
   describe 'association' do
-    context 'User' do
-      it 'follower N:1' do
+    context 'belongs_to' do
+      it 'follower' do
         expect(Relationship.reflect_on_association(:follower).macro).to eq :belongs_to
       end
 
-      it 'followed N:1' do
+      it 'followed' do
         expect(Relationship.reflect_on_association(:followed).macro).to eq :belongs_to
       end
     end

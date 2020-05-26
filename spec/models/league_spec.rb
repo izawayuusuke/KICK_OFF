@@ -12,8 +12,8 @@ RSpec.describe League, type: :model do
   end
 
   describe 'association' do
-    context 'Team' do
-      it '1:N' do
+    context 'has_many' do
+      it 'teams' do
         expect(League.reflect_on_association(:teams).macro).to eq :has_many
       end
     end

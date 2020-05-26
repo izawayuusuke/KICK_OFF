@@ -12,14 +12,12 @@ RSpec.describe Message, type: :model do
   end
 
   describe 'association' do
-    context 'User' do
-      it 'N:1' do
+    context 'belongs_to' do
+      it 'user' do
         expect(Message.reflect_on_association(:user).macro).to eq :belongs_to
       end
-    end
 
-    context 'Room' do
-      it 'N:1' do
+      it 'room' do
         expect(Message.reflect_on_association(:room).macro).to eq :belongs_to
       end
     end

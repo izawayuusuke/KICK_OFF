@@ -12,14 +12,12 @@ RSpec.describe Discussion, type: :model do
   end
 
   describe 'association' do
-    context 'User' do
-      it 'N:1' do
+    context 'belongs_to' do
+      it 'user' do
         expect(Discussion.reflect_on_association(:user).macro).to eq :belongs_to
       end
-    end
 
-    context 'Team' do
-      it 'N:1' do
+      it 'team' do
         expect(Discussion.reflect_on_association(:team).macro).to eq :belongs_to
       end
     end

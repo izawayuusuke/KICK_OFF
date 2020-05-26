@@ -12,20 +12,16 @@ RSpec.describe Team, type: :model do
   end
 
   describe 'association' do
-    context 'Player' do
-      it '1:N' do
+    context 'has_many' do
+      it 'players' do
         expect(Team.reflect_on_association(:players).macro).to eq :has_many
       end
-    end
 
-    context 'Belong' do
-      it '1:N' do
+      it 'belongs' do
         expect(Team.reflect_on_association(:belongs).macro).to eq :has_many
       end
-    end
 
-    context 'Discussion' do
-      it '1:N' do
+      it 'discussions' do
         expect(Team.reflect_on_association(:discussions).macro).to eq :has_many
       end
     end
