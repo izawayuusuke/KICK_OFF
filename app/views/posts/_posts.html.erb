@@ -1,11 +1,16 @@
-<% if posts.blank? %>
-  <p class="no-posts">投稿がありません</p>
+<% if posts.blank? && params[:search].nil? %>
+  <p class="no-contents">投稿がありません</p>
 
   <% if controller.controller_name == "users" && controller.action_name == "likes" %>
     <%= link_to '投稿にいいねをしよう', posts_path, class: "btn btn-outline-primary" %>
   <% else %>
     <%= link_to '投稿してみよう', posts_path, class: "btn btn-outline-primary" %>
   <% end %>
+<% end %>
+
+<% if controller.controller_name == "posts" %>
+  <% provide(:search, "投稿") %>
+  <%= render 'shared/search', path: posts_path %>
 <% end %>
 
 <div class="jscroll">

@@ -113,3 +113,9 @@ $(function () {
     }
   });
 });
+
+// メッセージ表示後、画面下まで移動
+$(document).on("turbolinks:load", function () {
+  var targetOffset = $("#main").offset().top;
+  $("html, body").animate({ scrollTop: targetOffset });
+});

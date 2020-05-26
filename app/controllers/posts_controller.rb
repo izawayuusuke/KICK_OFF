@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :post_find, only: [:show, :destroy]
 
   def index
-    @posts = Post.all.recent.paginate(params, 20)
+    @posts = Post.search(params[:search]).recent.paginate(params, 20)
     @post = Post.new
   end
 
@@ -18,7 +18,7 @@ class PostsController < ApplicationController
       flash[:success] = "投稿しました"
       redirect_to posts_path
     else
-      @posts = Post.all.recent.paginate(params, 20)
+      @posts = Post.search(params[:search]).recent.paginate(params, 20)
       render :index
     end
   end

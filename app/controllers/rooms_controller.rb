@@ -3,17 +3,16 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = current_user.rooms
-    @others = [] # メッセージの送信先一覧を格納
+    @others = []
     @rooms.each do |room|
-      @entry = room.entries.exclude(current_user.id).first
-      @others.push(@entry)
+      @others += Entry.where(room_id: room.id).exclude(current_user.id)
     end
   end
 
   def show
     @room = Room.find(params[:id])
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
-      @messages = @room.messages
+      @messages = @room.messages.limited
       @entries = @room.entries
       @other = @room.entries.exclude(current_user.id).first
 
