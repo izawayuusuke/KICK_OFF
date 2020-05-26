@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :team do
-    name { "MyString" }
-    is_domestic? { false }
-    is_representative? { false }
+    name { Faker::Sports::Football.team }
+    association :league
   end
 end
