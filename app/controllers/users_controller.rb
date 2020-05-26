@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user?, only: [:edit, :update]
 
   def index
-    @users = User.search(params[:search]).paginate(params, 10)
+    @users = User.search(params[:search]).paginate(params, 20)
   end
 
   def show
@@ -60,7 +60,7 @@ class UsersController < ApplicationController
 
   def likes
     @like_posts = Post.joins(:likes).where(likes: { user_id: @user.id })
-                  .recent.page(params[:page]).per(10)
+                  .recent.page(params[:page]).per(20)
   end
 
   private

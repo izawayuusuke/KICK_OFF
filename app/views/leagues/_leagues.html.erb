@@ -16,7 +16,7 @@
   <% end %>
 </div>
 
-<div class="row group-outline">
+<div class="row group-outline" style="margin-bottom: 30px;">
   <% @teams.each do |team| %>
     <%= link_to team_path(team), class: "teams-split" do %>
       <div class="team-outline">
@@ -27,4 +27,6 @@
   <% end %>
 </div>
 
-<%= render 'leagues/paginate' %>
+<% unless controller.action_name == "show" || controller.action_name == "update" || controller.controller_name == "teams" %>
+  <%= render 'shared/paginate', object: @teams %>
+<% end %>
