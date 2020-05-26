@@ -24,6 +24,13 @@ class User < ApplicationRecord
   validates :name, presence: true
 
   mount_uploader :profile_image, ImageUploader
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
 
   def following?(other_user)
     following.include?(other_user)

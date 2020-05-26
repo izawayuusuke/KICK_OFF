@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'leagues/representative'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  resources :users, only: [:show, :edit, :update] do
+  resources :users, only: [:index, :show, :edit, :update, :destroy] do
     member do
       get :following, :followers, :likes
     end
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
-  resources :players, only: [:show, :edit, :update] do
+  resources :players, only: [:index, :show, :edit, :update] do
     resources :belongs, only: [:create]
   end
 

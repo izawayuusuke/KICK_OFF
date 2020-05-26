@@ -1,16 +1,22 @@
 <h1 class="text-center">メッセージ</h1>
-
 <div class="col-8 offset-2">
   <% @others.each do |other| %>
     <%= link_to room_path(other.room_id) do %>
       <div class="row group-outline">
         <%= render 'users/profile_image', user: other.user %>
+        <% if unchecked_other_message(other).any? %>
+          <i class="fas fa-circle s-circle"></i>
+        <% end %>
         <ul class="col-10">
             <li>
               <%= other.user.name %>
             </li>
             <li>
-              <%= other.user.messages.last.content %>
+              <% if other.user.messages.present? %>
+                <%= other.user.messages.last.content %>
+              <% else %>
+                <%= current_user.messages.last.content %>
+              <% end %>
             </li>
         </ul>
       </div>
@@ -18,6 +24,6 @@
   <% end %>
 
   <% if @others.blank? %>
-    <p class="text-center no-messages">メッセージがありません</p>
+    <p class="text-center no-contents">メッセージがありません</p>
   <% end %>
 </div>

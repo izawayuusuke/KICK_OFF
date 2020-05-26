@@ -602,4 +602,48 @@ Welcome to [1mUbuntu 18.04.4 LTS[0m!
 
 Ubuntu 18.04.4 LTS ubuntu-bionic ttyS0
 
-ubuntu-bionic login: 
+ubuntu-bionic login: [ 5999.242772] e1000 0000:00:03.0 enp0s3: Detected Tx Unit Hang
+[ 5999.242772]   Tx Queue             <0>
+[ 5999.242772]   TDH                  <40>
+[ 5999.242772]   TDT                  <42>
+[ 5999.242772]   next_to_use          <42>
+[ 5999.242772]   next_to_clean        <40>
+[ 5999.242772] buffer_info[next_to_clean]
+[ 5999.242772]   time_stamp           <10015bc4b>
+[ 5999.242772]   next_to_watch        <41>
+[ 5999.242772]   jiffies              <10015be10>
+[ 5999.242772]   next_to_watch.status <0>
+[ 6001.258587] e1000 0000:00:03.0 enp0s3: Detected Tx Unit Hang
+[ 6001.258587]   Tx Queue             <0>
+[ 6001.258587]   TDH                  <40>
+[ 6001.258587]   TDT                  <42>
+[ 6001.258587]   next_to_use          <42>
+[ 6001.258587]   next_to_clean        <40>
+[ 6001.258587] buffer_info[next_to_clean]
+[ 6001.258587]   time_stamp           <10015bc4b>
+[ 6001.258587]   next_to_watch        <41>
+[ 6001.258587]   jiffies              <10015c008>
+[ 6001.258587]   next_to_watch.status <0>
+[ 6003.275326] e1000 0000:00:03.0 enp0s3: Detected Tx Unit Hang
+[ 6003.275326]   Tx Queue             <0>
+[ 6003.275326]   TDH                  <40>
+[ 6003.275326]   TDT                  <42>
+[ 6003.275326]   next_to_use          <42>
+[ 6003.275326]   next_to_clean        <40>
+[ 6003.275326] buffer_info[next_to_clean]
+[ 6003.275326]   time_stamp           <10015bc4b>
+[ 6003.275326]   next_to_watch        <41>
+[ 6003.275326]   jiffies              <10015c200>
+[ 6003.275326]   next_to_watch.status <0>
+[ 6005.290545] e1000 0000:00:03.0 enp0s3: Detected Tx Unit Hang
+[ 6005.290545]   Tx Queue             <0>
+[ 6005.290545]   TDH                  <40>
+[ 6005.290545]   TDT                  <42>
+[ 6005.290545]   next_to_use          <42>
+[ 6005.290545]   next_to_clean        <40>
+[ 6005.290545] buffer_info[next_to_clean]
+[ 6005.290545]   time_stamp           <10015bc4b>
+[ 6005.290545]   next_to_watch        <41>
+[ 6005.290545]   jiffies              <10015c3f8>
+[ 6005.290545]   next_to_watch.status <0>
+[ 6005.578464] e1000 0000:00:03.0 enp0s3: Reset adapter

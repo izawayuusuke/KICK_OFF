@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :following, :followers, :likes]
   before_action :correct_user?, only: [:edit, :update]
 
+  def index
+    @users = User.search(params[:search]).paginate(params, 20)
+  end
+
   def show
     # ユーザーがシェアした投稿とユーザーの投稿を同時に取得する
     @posts = Post.left_joins(:shares).where(shares: { user_id: @user.id })
@@ -41,6 +45,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    redirect_to users_path
+  end
+
   def following
     @following = @user.following
   end
@@ -51,7 +60,7 @@ class UsersController < ApplicationController
 
   def likes
     @like_posts = Post.joins(:likes).where(likes: { user_id: @user.id })
-                  .recent.page(params[:page]).per(10)
+                  .recent.page(params[:page]).per(20)
   end
 
   private

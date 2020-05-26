@@ -6,4 +6,12 @@ class Player < ApplicationRecord
 
   enum dominant_foot: { right_foot: 1, left_foot: 2, both_foot: 3 }
   enum position: { GK: 1, DF: 2, MF: 3, FW: 4 }
+
+  def self.search(search)
+    if search
+      where(['name LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
 end
