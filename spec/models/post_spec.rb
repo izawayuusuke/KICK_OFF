@@ -34,5 +34,17 @@ RSpec.describe Post, type: :model do
         expect(Post.reflect_on_association(:comments).macro).to eq :has_many
       end
     end
+
+    context 'Share' do
+      it '1:N' do
+        expect(Post.reflect_on_association(:shares).macro).to eq :has_many
+      end
+    end
+
+    context 'Notification' do
+      it '1:N' do
+        expect(Post.reflect_on_association(:notifications).macro).to eq :has_many
+      end
+    end
   end
 end

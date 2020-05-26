@@ -23,5 +23,11 @@ RSpec.describe Comment, type: :model do
         expect(Comment.reflect_on_association(:post).macro).to eq :belongs_to
       end
     end
+
+    context 'Notification' do
+      it '1:N' do
+        expect(Comment.reflect_on_association(:notifications).macro).to eq :has_many
+      end
+    end
   end
 end

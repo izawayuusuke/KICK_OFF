@@ -4,7 +4,6 @@ RSpec.describe User, type: :model do
   describe 'validation' do
     let(:user) { build(:user) }
     context 'name' do
-      let(:test_user) { user }
       it 'presence true' do
         user.name = ''
         expect(user.valid?).to eq false
@@ -31,12 +30,45 @@ RSpec.describe User, type: :model do
       end
     end
 
+    context 'Share' do
+      it '1:N' do
+        expect(User.reflect_on_association(:shares).macro).to eq :has_many
+      end
+    end
+
+    context 'Entry' do
+      it '1:N' do
+        expect(User.reflect_on_association(:entries).macro).to eq :has_many
+      end
+    end
+
+    context 'Message' do
+      it '1:N' do
+        expect(User.reflect_on_association(:messages).macro).to eq :has_many
+      end
+    end
+
+    context 'Discussion' do
+      it '1:N' do
+        expect(User.reflect_on_association(:discussions).macro).to eq :has_many
+      end
+    end
+
     context 'Relationship' do
       it 'active_relationships 1:N' do
         expect(User.reflect_on_association(:active_relationships).macro).to eq :has_many
       end
       it 'passive_relationships 1:N' do
         expect(User.reflect_on_association(:passive_relationships).macro).to eq :has_many
+      end
+    end
+
+    context 'Notification' do
+      it 'active_notifications 1:N' do
+        expect(User.reflect_on_association(:active_notifications).macro).to eq :has_many
+      end
+      it 'passive_notifications 1:N' do
+        expect(User.reflect_on_association(:passive_notifications).macro).to eq :has_many
       end
     end
   end
