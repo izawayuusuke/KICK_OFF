@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :set_user, only: [:show, :following, :followers, :likes]
   before_action :correct_user?, only: [:edit, :update]
 
@@ -46,8 +46,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    redirect_to users_path
+    if current_user.admin == true
+      User.find(params[:id]).destroy
+      redirect_to users_path
+    else
+      flash[:warning] = "管理者権限がありません"
+      redirect_to users_path
+    end
   end
 
   def following
