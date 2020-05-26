@@ -1,5 +1,6 @@
 FactoryBot.define do
   factory :post do
-    content { 'hello world' }
+    content { Faker::Lorem.characters(number:5) }
+    association :user
   end
 end

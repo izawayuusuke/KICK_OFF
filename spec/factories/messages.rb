@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :message do
-    user { nil }
-    room { nil }
+    association :user
+    association :room
+    content { Faker::Lorem::characters(number: 10) }
   end
 end

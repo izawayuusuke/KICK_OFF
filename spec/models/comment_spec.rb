@@ -12,14 +12,17 @@ RSpec.describe Comment, type: :model do
   end
 
   describe 'association' do
-    context 'User' do
-      it 'N:1' do
-        expect(Comment.reflect_on_association(:user).macro).to eq :belongs_to
+    context 'has_many' do
+      it 'notifications' do
+        expect(Comment.reflect_on_association(:notifications).macro).to eq :has_many
       end
     end
 
-    context 'Post' do
-      it 'N:1' do
+    context 'belongs_to' do
+      it 'user' do
+        expect(Comment.reflect_on_association(:user).macro).to eq :belongs_to
+      end
+      it 'post' do
         expect(Comment.reflect_on_association(:post).macro).to eq :belongs_to
       end
     end

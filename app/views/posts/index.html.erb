@@ -1,11 +1,19 @@
 <div class="row">
   <div class="col-lg-4 col-12" style="padding-bottom: 30px;">
-    <%= render 'users/profile_image', user: current_user %>
-    <div class="font-name-bg">
-      <%= current_user.name %>
-    </div>
-    <%= render 'new_post' %>
+    <% if user_signed_in? %>
+      <%= render 'users/profile_image', user: current_user %>
+      <div class="font-name-bg">
+        <%= current_user.name %>
+      </div>
+      <%= render 'new_post' %>
+
+    <% else %>
+      <%= link_to "アカウント作成", new_user_registration_path, class: "btn btn-outline-primary col-6 offset-3" %>
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary col-6 offset-3" %>
+    <% end %>
   </div>
+
+
   <div class="col-lg-8 col-12">
     <%= render 'posts', posts: @posts %>
   </div>

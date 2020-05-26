@@ -120,10 +120,11 @@ li {
 }
 
 // フラッシュメッセージ
-.alert-notice {
+.alert-notice,
+.alert-alert {
   color: #000;
-  background-color: #ffff33;
-  border-color: #ffff33;
+  background-color: #cdcdcd;
+  border-color: #cdcdcd;
 }
 
 // エラーメッセージ
