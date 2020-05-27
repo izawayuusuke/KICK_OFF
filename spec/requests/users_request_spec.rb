@@ -101,7 +101,7 @@ RSpec.describe "Users", type: :request do
         expect do
           patch user_path(user), params: { user: FactoryBot.attributes_for(:user, name: "") }
         end.to_not change { User.find(user.id).name }
-        expect(response.body).to include "入力してください"
+        expect(response.body).to include "ユーザーネームを入力してください"
       end
     end
   end
