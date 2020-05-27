@@ -16,7 +16,8 @@ class DiscussionsController < ApplicationController
   end
 
   def destroy
-    Discussion.find(params[:id]).destroy
+    @discussion = Discussion.find(params[:id])
+    @discussion.destroy
     flash[:danger] = "コメントを削除しました"
     redirect_to @team
   end

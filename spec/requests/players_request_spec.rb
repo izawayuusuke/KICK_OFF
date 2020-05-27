@@ -84,7 +84,7 @@ RSpec.describe "Players", type: :request do
   #       user.admin = true
   #     end
 
-  #     it '選手の作成に成功する' do
+  #     it '登録に成功する' do
   #       expect do
   #         post team_players_path(team_id: team.id), params: { player: FactoryBot.attributes_for(:player) }
   #       end.to change(Player, :count).by(1)

@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Message, type: :model do
   describe 'validation' do
     let(:message) { build(:message) }
+    it 'complete all' do
+      expect(message).to be_valid
+    end
+
     context 'content' do
       it 'presence true' do
         message.content = ''

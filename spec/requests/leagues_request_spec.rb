@@ -75,7 +75,7 @@ RSpec.describe "Leagues", type: :request do
         user.admin = true
       end
 
-      it 'リーグの作成に成功する' do
+      it '登録に成功する' do
         expect do
           post leagues_path, params: { league: FactoryBot.attributes_for(:league) }
         end.to change(League, :count).by(1)
@@ -93,7 +93,7 @@ RSpec.describe "Leagues", type: :request do
         sign_in user
       end
 
-      it 'リーグの作成に失敗する' do
+      it '登録に失敗する' do
         expect do
           post leagues_path, params: { league: FactoryBot.attributes_for(:league) }
           expect(response.status).to eq 302
@@ -113,7 +113,7 @@ RSpec.describe "Leagues", type: :request do
         user.admin = true
       end
 
-      it 'リーグの編集に成功する' do
+      it '編集に成功する' do
         expect do
           patch league_path(league), params: { league: FactoryBot.attributes_for(:league, name: "new_name") }
         end.to change { League.find(league.id).name }.from("old_name").to("new_name")
@@ -137,7 +137,7 @@ RSpec.describe "Leagues", type: :request do
         sign_in user
       end
 
-      it 'リーグの編集に失敗する' do
+      it '編集に失敗する' do
         expect do
           patch league_path(league), params: { league: FactoryBot.attributes_for(:league, name: "new_name") }
           expect(response.status).to eq 302

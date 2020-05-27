@@ -41,7 +41,7 @@ RSpec.describe "Teams", type: :request do
         user.admin = true
       end
 
-      it 'チームの作成に成功する' do
+      it '登録に成功する' do
         expect do
           post teams_path, params: { team: FactoryBot.attributes_for(:team) }
         end.to change(Team, :count).by(1)
@@ -52,7 +52,7 @@ RSpec.describe "Teams", type: :request do
         expect(response).to redirect_to team_path(Team.last)
       end
 
-      it 'パラメーターが不正な場合は作成に失敗する' do
+      it 'パラメーターが不正な場合は登録に失敗する' do
         expect do
           post teams_path, params: { team: FactoryBot.attributes_for(:team, name: "") }
         end.to_not change(Team, :count)
@@ -64,7 +64,7 @@ RSpec.describe "Teams", type: :request do
         sign_in user
       end
 
-      it 'チームの作成に失敗する' do
+      it '登録に失敗する' do
         expect do
           post teams_path, params: { team: FactoryBot.attributes_for(:team) }
         end.to_not change(Team, :count)
@@ -81,7 +81,7 @@ RSpec.describe "Teams", type: :request do
         user.admin = true
       end
 
-      it 'チームの編集に成功する' do
+      it '編集に成功する' do
         expect do
           patch team_path(team), params: { team: FactoryBot.attributes_for(:team, name: "new_name") }
         end.to change { Team.find(team.id).name }.from("old_name").to("new_name")
@@ -105,7 +105,7 @@ RSpec.describe "Teams", type: :request do
         sign_in user
       end
 
-      it 'チームの編集に失敗する' do
+      it '編集に失敗する' do
         expect do
           patch team_path(team), params: { team: FactoryBot.attributes_for(:team) }
           expect(response.status).to eq 302

@@ -63,8 +63,8 @@ RSpec.describe "Users", type: :request do
   end
 
   describe 'POST #create' do
-    context 'ユーザー認証テスト' do
-      it 'アカウントの作成に成功する' do
+    context 'アカウントの作成テスト' do
+      it '作成に成功する' do
         expect do
           post users_path, params: { user: FactoryBot.attributes_for(:user) }
           expect(response.status).to eq 302
@@ -72,7 +72,7 @@ RSpec.describe "Users", type: :request do
         expect(response).to redirect_to posts_path
       end
 
-      it 'アカウントの作成に失敗する' do
+      it '作成に失敗する' do
         expect do
           post users_path, params: { user: FactoryBot.attributes_for(:user, name: "") }
         end.to_not change(User, :count)
@@ -108,15 +108,14 @@ RSpec.describe "Users", type: :request do
 
   describe 'DELETE #destroy' do
     let(:user) { create(:user) }
-    let(:other_user) { create(:user) }
+    let!(:other_user) { create(:user) }
     context '管理者権限を持つとき' do
       before do
         user.admin = true
         sign_in user
-        other_user # 自分以外のユーザーを認識させる
       end
 
-      it 'ユーザーの削除に成功する' do
+      it '削除に成功する' do
         expect do
           delete user_path(other_user)
           expect(response.status).to eq 302
@@ -132,7 +131,6 @@ RSpec.describe "Users", type: :request do
     context '管理者権限を持たないとき' do
       before do
         sign_in user
-        other_user
       end
 
       it '削除に失敗する' do

@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'validation' do
     let(:user) { build(:user) }
+    it 'complete all' do
+      expect(user).to be_valid
+    end
+
     context 'name' do
       it 'presence true' do
         user.name = ''

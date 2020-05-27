@@ -14,6 +14,7 @@ class UsersController < ApplicationController
               Post.left_joins(:shares).where(user_id: @user.id))
               .recent.paginate(params, 20)
 
+    # メッセージルームが既に作成されているか識別する
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id

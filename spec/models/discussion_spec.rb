@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Discussion, type: :model do
   describe 'validation' do
     let(:discussion) { build(:discussion) }
+    it 'complete all' do
+      expect(discussion).to be_valid
+    end
+
     context 'content' do
       it 'presence true' do
         discussion.content = ''
