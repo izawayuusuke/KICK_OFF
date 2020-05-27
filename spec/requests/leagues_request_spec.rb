@@ -26,13 +26,9 @@ RSpec.describe "Leagues", type: :request do
         sign_in user
       end
 
-      it 'リーグ一覧が表示される' do
-        get leagues_path
-        expect(response.status).to eq 200
-      end
-
       it '登録フォームが表示されない' do
         get leagues_path
+        expect(response.status).to eq 200
         expect(response.body).to_not include "登録する"
       end
     end
@@ -63,13 +59,9 @@ RSpec.describe "Leagues", type: :request do
         sign_in user
       end
 
-      it 'リーグ詳細が表示される' do
-        get league_path(league)
-        expect(response.status).to eq 200
-      end
-
       it '編集フォームが表示されない' do
         get league_path(league)
+        expect(response.status).to eq 200
         expect(response.body).to_not include "更新する"
       end
     end
@@ -151,6 +143,27 @@ RSpec.describe "Leagues", type: :request do
           expect(response.status).to eq 302
         end.to_not change { League.find(league.id).name }
       end
+    end
+  end
+
+  describe 'GET #leagues_classification' do
+    let(:user) { create(:user) }
+    it '国内リーグ一覧が表示される' do
+      get leagues_domestic_path
+      expect(response.status).to eq 200
+      expect(response.body).to include "国内"
+    end
+
+    it '海外リーグ一覧が表示される' do
+      get leagues_abroad_path
+      expect(response.status).to eq 200
+      expect(response.body).to include "海外"
+    end
+
+    it '代表一覧が表示される' do
+      get leagues_representative_path
+      expect(response.status).to eq 200
+      expect(response.body).to include "代表"
     end
   end
 end
