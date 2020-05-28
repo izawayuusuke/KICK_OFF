@@ -3,16 +3,17 @@ require 'rails_helper'
 RSpec.describe "Comments", type: :request do
   describe 'POST #create' do
     let(:user) { create(:user) }
-    let!(:post) { create(:post) }
+    let(:post) { create(:post) }
     context 'ログインしているとき' do
       before do
         sign_in user
       end
 
-    #   it '投稿に成功する' do
-    #     post post_comments_path, create(id: comment.id, user_id: user.id, post_id: post.id)
-    #     expect(response.status).to eq 302
-    #   end
+      # it '投稿に成功する' do
+      #   expect do
+      #     post post_comments_path(post), params: { comment: FactoryBot.attributes_for(:comment) }
+      #   end.to change(Comment, :count).by(1)
+      # end
     end
   end
 

@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
   before_action :admin_user?, only: [:edit, :update]
 
   def index
-    @players = Player.search(params[:search]).paginate(params, 20)
+    @players = Player.search(params[:search]).order(:name).paginate(params, 20)
   end
 
   def show

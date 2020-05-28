@@ -75,22 +75,22 @@ RSpec.describe "Players", type: :request do
     end
   end
 
-  # describe 'POST #create' do
-  #   let(:user) { create(:user) }
-  #   let(:team) { create(:team) }
-  #   context '管理者権限を持つとき' do
-  #     before do
-  #       sign_in user
-  #       user.admin = true
-  #     end
+  describe 'POST #create' do
+    let(:user) { create(:user) }
+    let!(:team) { create(:team) }
+    context '管理者権限を持つとき' do
+      before do
+        sign_in user
+        user.admin = true
+      end
 
-  #     it '登録に成功する' do
-  #       expect do
-  #         post team_players_path(team_id: team.id), params: { player: FactoryBot.attributes_for(:player) }
-  #       end.to change(Player, :count).by(1)
-  #     end
-  #   end
-  # end
+      # it '登録に成功する' do
+      #   expect do
+      #     post team_players_path(team), params: { player: FactoryBot.attributes_for(:player) }
+      #   end.to change(Player, :count).by(1)
+      # end
+    end
+  end
 
   describe 'PATCH #update' do
     let(:user) { create(:user) }

@@ -12,12 +12,43 @@ User.create!(name: "KICK OFF",
             password_confirmation: "kickoff",
             admin: true)
 
-10.times do |n|
+50.times do |n|
   name = Faker::Name.name
-  email = "ball#{n+1}@example.com"
+  introduction = Faker::Lorem::sentence
+  email = "example@#{n+1}.com"
   password = "password"
   User.create!(name: name,
               email: email,
               password: password,
               password_confirmation: password)
+end
+
+User.all.each do |user|
+  user.posts.create!(user_id: user.id,
+                    content: Faker::Lorem::sentence,
+                    image: File.open('./app/assets/images/no_post_image.png'))
+end
+
+users = User.all
+user = users.first
+following = users[2..50]
+followers = users[3..40]
+following.each { |followed| user.follow(followed) }
+followers.each { |follower| follower.follow(user) }
+
+posts = Post.all
+
+like_users = users[2..40]
+like_users.each do |user|
+  posts.each { |post| Like.create(user_id: user.id, post_id: post.id) }
+end
+
+share_users = users[3..30]
+share_users.each do |user|
+  posts.each { |post| Share.create(user_id: user.id, post_id: post.id) }
+end
+
+comment_users = users[5..50]
+comment_users.each do |user|
+  posts.each { |post| Comment.create(user_id: user.id, post_id: post.id, comment: Faker::Lorem::sentence) }
 end

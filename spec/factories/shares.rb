@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :share do
     association :post
-    user { post.user }
+    association :user
   end
 end
