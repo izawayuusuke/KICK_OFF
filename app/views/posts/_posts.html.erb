@@ -6,11 +6,11 @@
   <% else %>
     <%= link_to '投稿してみよう', posts_path, class: "btn btn-outline-primary" %>
   <% end %>
-<% end %>
-
-<% if controller.controller_name == "posts" %>
-  <% provide(:search, "投稿") %>
-  <%= render 'shared/search', path: posts_path %>
+<% else %>
+  <% if controller.controller_name == "posts" %>
+    <% provide(:search, "投稿") %>
+    <%= render 'shared/search', path: posts_path %>
+  <% end %>
 <% end %>
 
 <div class="jscroll">
