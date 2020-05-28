@@ -3,37 +3,38 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = current_user.rooms
-    @others = [] # メッセージの送信先一覧を格納
-    @messages = [] # 相手からの全てのメッセージを格納
+    @others = []
     @rooms.each do |room|
-      @entry = room.entries.receive(current_user.id).first
-      @others.push(@entry)
-
-      @messages += room.messages.where(checked: false)
-                      .receive(current_user.id)
-    end
-
-    # メッセージを見たら確認済みにする
-    @messages.each do |message|
-      message.update_attributes(checked: true)
+      @others += Entry.where(room_id: room.id).exclude(current_user.id)
     end
   end
 
   def show
     @room = Room.find(params[:id])
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
-      @messages = @room.messages
+      @messages = @room.messages.limited
       @entries = @room.entries
-      @other = @room.entries.receive(current_user.id).first
+      @other = @room.entries.exclude(current_user.id).first
+
+      # メッセージを見たら確認済みにする
+      @messages.each do |message|
+        message.update_attributes(checked: true)
+      end
     else
       redirect_back(fallback_location: root_path)
     end
   end
 
+
+
   def create
-    @room = Room.create
-    @entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
-    @entry2 = Entry.create(params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id))
-    redirect_to room_path(@room.id)
+    if user_signed_in?
+      @room = Room.create
+      @entry1 = Entry.create(room_id: @room.id, user_id: current_user.id)
+      @entry2 = Entry.create(params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id))
+      redirect_to room_path(@room.id)
+    else
+      redirect_to new_user_session_path
+    end
   end
 end

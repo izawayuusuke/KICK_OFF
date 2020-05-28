@@ -21,9 +21,9 @@
 
 $(document).on("turbolinks:load", function () {
   $(".jscroll").jscroll({
-    // 無限に追加する要素は、どこに入れる？
+    // 無限に追加する要素
     contentSelector: ".jscroll",
-    // 次のページにいくためのリンクの場所は？ ＞aタグの指定
+    // 次のページにいくためのリンクの場所
     nextSelector: "a.next",
   });
 });
@@ -112,4 +112,10 @@ $(function () {
       $(this).height($(this).height() + 1);
     }
   });
+});
+
+// メッセージ表示後、画面下まで移動
+$(document).on("turbolinks:load", function () {
+  var targetOffset = $("#main").offset().top;
+  $("html, body").animate({ scrollTop: targetOffset });
 });

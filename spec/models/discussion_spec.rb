@@ -1,5 +1,29 @@
 require 'rails_helper'
 
 RSpec.describe Discussion, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validation' do
+    let(:discussion) { build(:discussion) }
+    it 'complete all' do
+      expect(discussion).to be_valid
+    end
+
+    context 'content' do
+      it 'presence true' do
+        discussion.content = ''
+        expect(discussion.valid?).to eq false
+      end
+    end
+  end
+
+  describe 'association' do
+    context 'belongs_to' do
+      it 'user' do
+        expect(Discussion.reflect_on_association(:user).macro).to eq :belongs_to
+      end
+
+      it 'team' do
+        expect(Discussion.reflect_on_association(:team).macro).to eq :belongs_to
+      end
+    end
+  end
 end

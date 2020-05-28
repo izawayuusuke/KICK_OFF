@@ -18,7 +18,7 @@
 
         <% if user_signed_in? && current_user.admin == true %>
           <td>
-            <%= link_to "削除する", team_belong_path(team), method: :delete,
+            <%= link_to "削除", team_belong_path(team), method: :delete,
                 data: { confirm: "削除しますか？"}, class: "btn btn-danger offset-1" %>
           </td>
         <% end %>

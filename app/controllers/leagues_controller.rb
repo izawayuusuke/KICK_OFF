@@ -13,14 +13,19 @@ class LeaguesController < ApplicationController
   end
 
   def create
-    @league = League.new(league_params)
-    if @league.save
-      flash[:success] = "リーグを作成しました"
-      redirect_to @league
+    if current_user.admin == true
+      @league = League.new(league_params)
+      if @league.save
+        flash[:success] = "リーグを作成しました"
+        redirect_to @league
+      else
+        all_leagues
+        @team = Team.new
+        render :index
+      end
     else
-      all_leagues
-      @team = Team.new
-      render :index
+      flash[:warning] = "管理者権限がありません"
+      redirect_to leagues_path
     end
   end
 

@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :belong do
-    player { nil }
-    team { nil }
+    association :player
+    association :team
   end
 end

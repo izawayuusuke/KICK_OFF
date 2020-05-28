@@ -19,7 +19,7 @@
 @import "font-awesome";
 
 body {
-  padding-top: 160px;
+  padding: 140px 0;
 }
 
 a {
@@ -54,6 +54,10 @@ li {
     color: #fff;
   }
 }
+.drop-item {
+  border-top: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+}
 .fa-futbol:before {
   color: #000;
 }
@@ -64,10 +68,17 @@ li {
   color: red;
   font-size: 13px;
 }
-.s-circle {
+.m-circle {
   position: relative;
   top: -12px;
   right: 103px;
+  color: red;
+  font-size: 13px;
+}
+.s-circle {
+  position: relative;
+  top: 7px;
+  right: -11px;
   color: red;
   font-size: 13px;
 }
@@ -109,10 +120,11 @@ li {
 }
 
 // フラッシュメッセージ
-.alert-notice {
+.alert-notice,
+.alert-alert {
   color: #000;
-  background-color: #ffff33;
-  border-color: #ffff33;
+  background-color: #cdcdcd;
+  border-color: #cdcdcd;
 }
 
 // エラーメッセージ
@@ -137,9 +149,7 @@ li {
   margin-bottom: 0 !important;
 }
 
-.no-relation,
-.no-posts,
-.no-messages {
+.no-contents {
   font-size: 20px;
   color: blue;
   font-weight: bold;

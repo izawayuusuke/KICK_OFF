@@ -1,0 +1,7 @@
+<%= form_tag(path, method: "get", style: "padding-bottom: 30px;") do %>
+  <% unless params[:search].nil? %>
+  <%= link_to "一覧に戻る", path, class: "btn btn-sm btn-info" %>
+  <% end %>
+  <%= text_field_tag :search %>
+  <%= submit_tag yield(:search) + "検索", name: nil %>
+<% end %>

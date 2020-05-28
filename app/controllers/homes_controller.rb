@@ -4,4 +4,7 @@ class HomesController < ApplicationController
       redirect_to posts_path
     end
   end
+
+  def about
+  end
 end

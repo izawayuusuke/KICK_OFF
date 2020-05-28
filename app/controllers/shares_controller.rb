@@ -3,6 +3,7 @@ class SharesController < ApplicationController
 
   def create
     @share = Share.create(user_id: current_user.id, post_id: @post.id)
+    redirect_to posts_path
   end
 
   def destroy

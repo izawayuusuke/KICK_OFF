@@ -6,6 +6,10 @@
         <%= current_user.name %>
       </div>
       <%= render "comments/form" %>
+
+    <% else %>
+      <%= link_to "アカウント作成", new_user_registration_path, class: "btn btn-outline-primary" %><br>
+      <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-primary" %>
     <% end %>
   </div>
 

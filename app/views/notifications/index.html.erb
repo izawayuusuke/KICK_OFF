@@ -1,6 +1,10 @@
 <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+<h1 class="text-center">通知</h1>
 <% if notifications.exists? %>
-  <%= render notifications %>
+  <div class="jscroll">
+    <%= render notifications %>
+    <%= link_to_next_page notifications, "次へ", class: "next" %>
+  </div>
 <% else %>
-  <p>通知はありません</p>
+  <p class="no-contents text-center">通知はありません</p>
 <% end %>

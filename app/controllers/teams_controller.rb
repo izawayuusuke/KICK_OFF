@@ -12,14 +12,19 @@ class TeamsController < ApplicationController
   end
 
   def create
-    @team = Team.new(team_params)
-    if @team.save
-      flash[:success] = "チームを作成しました"
-      redirect_to @team
+    if current_user.admin == true
+      @team = Team.new(team_params)
+      if @team.save
+        flash[:success] = "チームを作成しました"
+        redirect_to @team
+      else
+        all_leagues
+        @league = League.new
+        render "leagues/index"
+      end
     else
-      all_leagues
-      @league = League.new
-      render "leagues/index"
+      flash[:warning] = "管理者権限がありません"
+      redirect_to leagues_path
     end
   end
 
@@ -31,7 +36,7 @@ class TeamsController < ApplicationController
       flash[:success] = "チームを更新しました"
       redirect_to @team
     else
-      render :show
+      render :edit
     end
   end
 

@@ -1,5 +1,5 @@
 <li>
-  <% if post.shared_by?(current_user) %>
+  <% if user_signed_in? && post.shared_by?(current_user) %>
     <%= link_to post_share_path(post), method: :delete, remote: true do %>
       <span class="btn btn-sm btn-outline-primary">シェアリング</span>
     <% end %>
