@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Comment, type: :model do
   describe 'validation' do
     let(:comment) { build(:comment) }
+    it 'complete all' do
+      expect(comment).to be_valid
+    end
+
     context 'comment' do
       it 'presence true' do
         comment.comment = ''

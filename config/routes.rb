@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "homes#top"
+  get "about", to: "homes#about"
   get 'leagues/domestic'
   get 'leagues/abroad'
   get 'leagues/representative'

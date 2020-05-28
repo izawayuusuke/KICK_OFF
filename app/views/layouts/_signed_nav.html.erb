@@ -25,8 +25,8 @@
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
       <i class="far fa-user"> アカウント</i></a>
   <ul class="dropdown-menu text-center" style="background-color: #007bff;">
-    <li><%= link_to "プロフィール", current_user %></li>
-    <li class="drop-item"><%= link_to "ユーザー一覧", users_path %></li>
+    <li><%= link_to "マイページ", current_user %></li>
+    <li class="drop-item"><%= link_to "ユーザーを探す", users_path %></li>
     <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
   </ul>
 </li>

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :set_user, only: [:show, :following, :followers, :likes]
   before_action :correct_user?, only: [:edit, :update]
 
@@ -12,8 +12,9 @@ class UsersController < ApplicationController
     @posts = Post.left_joins(:shares).where(shares: { user_id: @user.id })
               .or(
               Post.left_joins(:shares).where(user_id: @user.id))
-              .recent.paginate(params, 20)
+              .recent.paginate(params, 10)
 
+    # メッセージルームが既に作成されているか識別する
     @current_user_entry = Entry.where(user_id: current_user.id)
     @user_entry = Entry.where(user_id: @user.id)
     unless @user.id == current_user.id
@@ -46,8 +47,13 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
-    redirect_to users_path
+    if current_user.admin == true
+      User.find(params[:id]).destroy
+      redirect_to users_path
+    else
+      flash[:warning] = "管理者権限がありません"
+      redirect_to users_path
+    end
   end
 
   def following

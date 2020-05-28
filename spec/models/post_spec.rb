@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Post, type: :model do
   describe 'validation' do
     let(:post) { build(:post) }
+    it 'complete all' do
+      expect(post).to be_valid
+    end
+
     context 'content' do
       it 'presence true' do
         post.content = ''

@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Team, type: :model do
   describe 'validation' do
     let(:team) { build(:team) }
+    it 'complete all' do
+      expect(team).to be_valid
+    end
+
     context 'name' do
       it 'presence true' do
         team.name = ''

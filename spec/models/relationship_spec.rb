@@ -2,7 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Relationship, type: :model do
   describe 'validation' do
-    let(:relationship) { build(:relationship) }
+    let(:relationship) { create(:relationship) }
+    it 'complete all' do
+      expect(relationship).to be_valid
+    end
+
     context 'follower_id' do
       it 'presence true' do
         relationship.follower_id = ''
