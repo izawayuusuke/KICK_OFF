@@ -45,10 +45,6 @@ class TeamsController < ApplicationController
       @team = Team.find(params[:id])
     end
 
-    def admin_user?
-      redirect_to @team unless current_user.admin == true
-    end
-
     def team_params
       params.require(:team).permit(:name, :emblem, :league_id)
     end

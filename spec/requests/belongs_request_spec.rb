@@ -86,6 +86,8 @@ RSpec.describe "Belongs", type: :request do
           expect(response.status).to eq 302
         end.to_not change(Belong, :count)
         expect(response).to redirect_to player_path(player)
+        follow_redirect!
+        expect(response.body).to include "管理者権限がありません"
       end
     end
   end

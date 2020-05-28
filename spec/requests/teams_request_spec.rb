@@ -3,16 +3,11 @@ require 'rails_helper'
 RSpec.describe "Teams", type: :request do
   describe 'GET #show' do
     let(:user) { create(:user) }
-    let(:team) { create(:team) }
+    let(:team) { create(:team, name: "team_name") }
     context '管理者権限を持つとき' do
       before do
         sign_in user
         user.admin = true
-      end
-
-      it 'チーム詳細が表示される' do
-        get team_path(team)
-        expect(response.status).to eq 200
       end
 
       it '編集リンクボタンが表示される' do
@@ -24,6 +19,12 @@ RSpec.describe "Teams", type: :request do
     context '管理者権限を持たないとき' do
       before do
         sign_in user
+      end
+
+      it 'チーム詳細が表示される' do
+        get team_path(team)
+        expect(response.status).to eq 200
+        expect(response.body).to include "team_name"
       end
 
       it '編集リンクボタンが表示されない' do
@@ -45,6 +46,8 @@ RSpec.describe "Teams", type: :request do
         expect do
           post teams_path, params: { team: FactoryBot.attributes_for(:team) }
         end.to change(Team, :count).by(1)
+        expect(response.status).to eq 302
+        expect(Team.all).to_not eq nil
       end
 
       it 'チーム詳細にリダイレクトする' do
@@ -56,6 +59,7 @@ RSpec.describe "Teams", type: :request do
         expect do
           post teams_path, params: { team: FactoryBot.attributes_for(:team, name: "") }
         end.to_not change(Team, :count)
+        expect(response.body).to include "チーム名を入力してください"
       end
     end
 
@@ -68,6 +72,9 @@ RSpec.describe "Teams", type: :request do
         expect do
           post teams_path, params: { team: FactoryBot.attributes_for(:team) }
         end.to_not change(Team, :count)
+        expect(response.status).to eq 302
+        follow_redirect!
+        expect(response.body).to include "管理者権限がありません"
       end
     end
   end
@@ -110,6 +117,7 @@ RSpec.describe "Teams", type: :request do
           patch team_path(team), params: { team: FactoryBot.attributes_for(:team) }
           expect(response.status).to eq 302
         end.to_not change { Team.find(team.id).name }
+        expect(response).to redirect_to root_path
       end
     end
   end

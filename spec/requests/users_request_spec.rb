@@ -63,7 +63,7 @@ RSpec.describe "Users", type: :request do
   end
 
   describe 'POST #create' do
-    context 'アカウントの作成テスト' do
+    context 'パラメーターが妥当な場合' do
       it '作成に成功する' do
         expect do
           post users_path, params: { user: FactoryBot.attributes_for(:user) }
@@ -71,7 +71,9 @@ RSpec.describe "Users", type: :request do
         end.to change(User, :count).by(1)
         expect(response).to redirect_to posts_path
       end
+    end
 
+    context 'パラメーターが不正な場合' do
       it '作成に失敗する' do
         expect do
           post users_path, params: { user: FactoryBot.attributes_for(:user, name: "") }
@@ -85,7 +87,7 @@ RSpec.describe "Users", type: :request do
     let(:user) { create(:user, name: "old_name") }
     let(:other_user) { create(:user) }
 
-    context "ユーザーの編集テスト" do
+    context "パラメーターが妥当な場合" do
       before do
         sign_in user
       end
@@ -95,6 +97,12 @@ RSpec.describe "Users", type: :request do
           patch user_path(user), params: { user: FactoryBot.attributes_for(:user, name: "new_name") }
           expect(response.status).to eq 302
         end.to change { User.find(user.id).name }.from("old_name").to("new_name")
+      end
+    end
+
+    context 'パラメーターが不正な場合' do
+      before do
+        sign_in user
       end
 
       it '編集に失敗する' do
@@ -120,6 +128,7 @@ RSpec.describe "Users", type: :request do
           delete user_path(other_user)
           expect(response.status).to eq 302
         end.to change(User, :count).by(-1)
+        expect(User.find_by(id: other_user.id)).to eq nil
       end
 
       it 'ユーザー一覧にリダイレクトする' do
@@ -137,8 +146,7 @@ RSpec.describe "Users", type: :request do
         expect do
           delete user_path(other_user)
         end.to_not change(User, :count)
-        get users_path
-        expect(response.status).to eq 200
+        follow_redirect!
         expect(response.body).to include '管理者権限がありません'
       end
     end

@@ -13,6 +13,7 @@ RSpec.describe "Relationships", type: :request do
         post relationships_path, params: { relationship: { follower_id: user.id, followed_id: other_user.id } }, xhr: true
         expect(Relationship.last.follower_id).to eq user.id
       end.to change(Relationship, :count).by(1)
+      expect(Relationship.find_by(follower_id: user.id, followed_id: other_user.id)).to_not eq nil
     end
   end
 
@@ -26,8 +27,9 @@ RSpec.describe "Relationships", type: :request do
 
     it 'フォローの解除に成功する' do
       expect do
-        delete relationship_path(relationship), xhr: true
+        delete relationship_path(relationship), params: { relationship: { followed_id: other_user.id } }, xhr: true
       end.to change(Relationship, :count).by(-1)
+      expect(Relationship.find_by(follower_id: user.id, followed_id: other_user.id)).to eq nil
     end
   end
 end

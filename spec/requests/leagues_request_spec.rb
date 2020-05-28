@@ -10,11 +10,6 @@ RSpec.describe "Leagues", type: :request do
         user.admin = true
       end
 
-      it 'リーグ一覧が表示される' do
-        get leagues_path
-        expect(response.status).to eq 200
-      end
-
       it '登録フォームが表示される' do
         get leagues_path
         expect(response.body).to include "登録する"
@@ -24,6 +19,12 @@ RSpec.describe "Leagues", type: :request do
     context '管理者権限を持たないとき' do
       before do
         sign_in user
+      end
+
+      it 'リーグ一覧が表示される' do
+        get leagues_path
+        expect(response.status).to eq 200
+        expect(response.body).to include "国内", "海外", "代表"
       end
 
       it '登録フォームが表示されない' do
@@ -36,16 +37,11 @@ RSpec.describe "Leagues", type: :request do
 
   describe 'GET #show' do
     let(:user) { create(:user) }
-    let(:league) { create(:league) }
+    let(:league) { create(:league, name: "J1") }
     context '管理者権限を持つとき' do
       before do
         sign_in user
         user.admin = true
-      end
-
-      it 'リーグ詳細が表示される' do
-        get league_path(league)
-        expect(response.status).to eq 200
       end
 
       it '編集フォームが表示される' do
@@ -57,6 +53,12 @@ RSpec.describe "Leagues", type: :request do
     context '管理者権限を持たないとき' do
       before do
         sign_in user
+      end
+
+      it 'リーグ詳細が表示される' do
+        get league_path(league)
+        expect(response.status).to eq 200
+        expect(response.body).to include "J1"
       end
 
       it '編集フォームが表示されない' do
@@ -77,14 +79,22 @@ RSpec.describe "Leagues", type: :request do
 
       it '登録に成功する' do
         expect do
-          post leagues_path, params: { league: FactoryBot.attributes_for(:league) }
+          post leagues_path, params: { league: FactoryBot.attributes_for(:league, name: "J1") }
         end.to change(League, :count).by(1)
+        expect(response.status).to eq 302
+        expect(League.find_by(name: "J1")).to_not eq nil
       end
 
       it 'リーグ詳細にリダイレクトする' do
         post leagues_path, params: { league: FactoryBot.attributes_for(:league) }
-        expect(response.status).to eq 302
         expect(response).to redirect_to league_path(League.last)
+      end
+
+      it 'パラメーターが不正な場合は登録に失敗する' do
+        expect do
+          post leagues_path, params: { league: FactoryBot.attributes_for(:league, name: "") }
+        end.to_not change(League, :count)
+        expect(response.body).to include "リーグ名を入力してください"
       end
     end
 
@@ -98,7 +108,8 @@ RSpec.describe "Leagues", type: :request do
           post leagues_path, params: { league: FactoryBot.attributes_for(:league) }
           expect(response.status).to eq 302
         end.to_not change(League, :count)
-        get leagues_path
+        expect(response).to redirect_to leagues_path
+        follow_redirect!
         expect(response.body).to include "管理者権限がありません"
       end
     end
@@ -142,6 +153,7 @@ RSpec.describe "Leagues", type: :request do
           patch league_path(league), params: { league: FactoryBot.attributes_for(:league, name: "new_name") }
           expect(response.status).to eq 302
         end.to_not change { League.find(league.id).name }
+        expect(response).to redirect_to root_path
       end
     end
   end

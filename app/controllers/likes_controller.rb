@@ -7,7 +7,7 @@ class LikesController < ApplicationController
       @post.create_notification_like!(current_user)
     else
       flash[:warning] = "アカウント作成もしくはログインしてください"
-      redirect_to posts_path
+      redirect_to new_user_session_path
     end
   end
 

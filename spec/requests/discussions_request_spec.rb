@@ -22,16 +22,8 @@ RSpec.describe "Discussions", type: :request do
         post team_discussions_path(team), params: { discussion: FactoryBot.attributes_for(:discussion) }
         expect(response).to redirect_to team_path(team)
       end
-    end
 
-    context 'パラメーターが不正な場合' do
-      let(:user) { create(:user) }
-      let(:team) { create(:team) }
-      before do
-        sign_in user
-      end
-
-      it '投稿に失敗する' do
+      it 'パラメーターが不正な場合は投稿に失敗する' do
         expect do
           post team_discussions_path(team), params: { discussion: FactoryBot.attributes_for(:discussion, content: "") }
           expect(response.status).to eq 200
@@ -43,10 +35,8 @@ RSpec.describe "Discussions", type: :request do
 
   describe 'DELETE #destroy' do
     let(:user) { create(:user) }
-    let(:other_user) { create(:user) }
     let(:team) { create(:team) }
     let!(:discussion) { create(:discussion, user_id: user.id, team_id: team.id) }
-    let!(:other_discussion) { create(:discussion, user_id: other_user.id, team_id: team.id) }
     before do
       sign_in user
     end
@@ -56,13 +46,11 @@ RSpec.describe "Discussions", type: :request do
         delete team_discussion_path(team, discussion)
         expect(response.status).to eq 302
       end.to change(Discussion, :count).by(-1)
+      expect(Discussion.find_by(user_id: user.id, team_id: team.id )).to eq nil
     end
 
     it 'チーム詳細にリダイレクトする' do
-      expect do
-        delete team_discussion_path(team, discussion)
-        expect(response.status).to eq 302
-      end.to change(Discussion, :count).by(-1)
+      delete team_discussion_path(team, discussion)
       expect(response).to redirect_to team_path(team)
     end
   end

@@ -1,0 +1,33 @@
+<% provide(:search, "ユーザー") %>
+<%= render 'shared/search', path: users_path %>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>ユーザー</th>
+      <th>プロフィール</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td>
+          <%= link_to user do %>
+            <%= render 'profile_image', user: user %>
+            <%= user.name %>
+          <% end %>
+        </td>
+        <td><%= simple_format(user.introduction) %></td>
+
+        <% if user_signed_in? && current_user.admin == true && user != current_user %>
+          <td>
+            <%= link_to "削除する", user_path(user), method: :delete,
+                  data: { confirm: alert_delete_user }, class: "btn btn-danger" %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= render 'shared/paginate', object: @users %>
