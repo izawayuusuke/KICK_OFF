@@ -1,8 +1,0 @@
-<div class="row">
-  <%= link_to_prev_page object, "前の20件", class: "btn btn-info col-4 offset-1" %>
-  <% if object.current_page == 1  %>
-    <%= link_to_next_page object, "次の20件", class: "btn btn-info col-4 offset-7" %>
-  <% else %>
-    <%= link_to_next_page object, "次の20件", class: "btn btn-info col-4 offset-2" %>
-  <% end %>
-</div>
