@@ -76,6 +76,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'carrierwave'
+gem 'fog'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'font-awesome-sass'
