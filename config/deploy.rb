@@ -6,7 +6,7 @@ set :repo_url, "https://github.com/izawayuusuke/KICK_OFF.git"
 set :deploy_to, "/home/ec2-user/KICK_OFF"
 set :rbenv_ruby, '2.5.7'
 set :linked_files, %w{config/master.key .env}
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads"
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
