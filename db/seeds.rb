@@ -15,7 +15,7 @@ User.create!(name: "KICK OFF",
 50.times do |n|
   name = Faker::Name.name
   introduction = Faker::Lorem::sentence
-  email = "example@#{n+1}.com"
+  email = Faker::Internet.email
   password = "password"
   User.create!(name: name,
               email: email,
