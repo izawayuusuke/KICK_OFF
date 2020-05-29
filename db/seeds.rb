@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create!(name: "KICK OFF",
-            email: "kickoff@gmail.com",
-            password: "kickoff",
-            password_confirmation: "kickoff",
+            email: "kick@off.work",
+            password: "kickoff2000",
+            password_confirmation: "kickoff2000",
             admin: true)
 
 50.times do |n|
