@@ -83,6 +83,21 @@ li {
   font-size: 13px;
 }
 
+.fa-arrow-alt-circle-up:hover {
+  color: blue;
+  background-color: none;
+}
+#back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+}
+
+#back-to-top a:hover {
+  background: none;
+  color: black;
+}
+
 // 画像サイズ
 .profile-image {
   width: 80px;
