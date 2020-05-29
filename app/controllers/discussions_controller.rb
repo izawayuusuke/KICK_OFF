@@ -10,7 +10,7 @@ class DiscussionsController < ApplicationController
     else
       @player = Player.new
       set_position
-      @discussions = @team.discussions.recent.paginate(params, 10)
+      @discussions = @team.discussions.recent.paginate(params, 20)
       render 'teams/show'
     end
   end

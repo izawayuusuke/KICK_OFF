@@ -13,13 +13,18 @@
   <% end %>
 </div>
 
-<% users.each do |user| %>
-  <div class="follow-area col-8 offset-2">
-      <%= render 'users/profile_image', user: user %>
-      <%= user.name %>
-      <% unless user.id == current_user.id %>
-        <%= render 'relationships/follow_button', user: user %>
-      <% end %>
-        <%= simple_format(user.introduction) %>
-  </div>
-<% end %>
+<div class="jscroll">
+  <% users.each do |user| %>
+    <div class="jscroll">
+      <div class="follow-area col-8 offset-2">
+          <%= render 'users/profile_image', user: user %>
+          <%= user.name %>
+          <% unless user.id == current_user.id %>
+            <%= render 'relationships/follow_button', user: user %>
+          <% end %>
+            <%= simple_format(user.introduction) %>
+      </div>
+    </div>
+  <% end %>
+  <%= link_to_next_page users, "次へ", class: "next" %>
+</div>

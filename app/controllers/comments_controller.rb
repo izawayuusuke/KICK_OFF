@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       flash[:success] = "コメントを投稿しました"
       redirect_to @post
     else
-      @comments = @post.comments.recent.paginate(params, 10)
+      @comments = @post.comments.recent.paginate(params, 20)
       render 'posts/show'
     end
   end

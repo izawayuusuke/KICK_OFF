@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @posts = Post.left_joins(:shares).where(shares: { user_id: @user.id })
               .or(
               Post.left_joins(:shares).where(user_id: @user.id))
-              .recent.paginate(params, 10)
+              .recent.paginate(params, 20)
 
     # メッセージルームが既に作成されているか識別する
     @current_user_entry = Entry.where(user_id: current_user.id)
@@ -57,16 +57,16 @@ class UsersController < ApplicationController
   end
 
   def following
-    @following = @user.following
+    @following = @user.following.paginate(params, 20)
   end
 
   def followers
-    @followers = @user.followers
+    @followers = @user.followers.paginate(params, 20)
   end
 
   def likes
     @like_posts = Post.joins(:likes).where(likes: { user_id: @user.id })
-                  .recent.page(params[:page]).per(20)
+                  .recent.paginate(params, 20)
   end
 
   private
