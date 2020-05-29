@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.create!(name: "KICK OFF",
-            email: "kickoff@eleven.com",
+            email: "soccer@eleven",
             password: "kickoff",
             password_confirmation: "kickoff",
             admin: true)
@@ -25,8 +25,7 @@ end
 
 User.all.each do |user|
   user.posts.create!(user_id: user.id,
-                    content: Faker::Lorem::sentence,
-                    image: File.open('./app/assets/images/no_post_image.png'))
+                    content: Faker::Lorem::sentence
 end
 
 users = User.all
