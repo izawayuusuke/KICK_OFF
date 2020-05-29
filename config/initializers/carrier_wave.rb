@@ -9,7 +9,9 @@ CarrierWave.configure do |config|
     config.fog_provider = 'fog/aws'
     config.cache_storage = :fog
     config.storage :fog
-    config.fog_credentials = {
+    set :default_env, {
+      rbenv_root: "/usr/local/rbenv",
+      path: "/usr/local/rbenv/shims:/usr/local/rbenv/bin:$PATH",
       # Amazon S3用の設定
       provider: 'AWS',
       region: ENV['S3_REGION'],
