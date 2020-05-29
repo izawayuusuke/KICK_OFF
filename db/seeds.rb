@@ -42,11 +42,6 @@ like_users.each do |user|
   posts.each { |post| Like.create(user_id: user.id, post_id: post.id) }
 end
 
-share_users = users[3..30]
-share_users.each do |user|
-  posts.each { |post| Share.create(user_id: user.id, post_id: post.id) }
-end
-
 comment_users = users[5..50]
 comment_users.each do |user|
   posts.each { |post| Comment.create(user_id: user.id, post_id: post.id, comment: Faker::Lorem::sentence) }
