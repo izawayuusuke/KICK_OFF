@@ -5,6 +5,7 @@ require 'carrierwave/storage/fog'
 CarrierWave.configure do |config|
   if Rails.env.production?
     config.fog_directory = ENV['S3_BUCKET']
+    config.fog_asset_host = 'https://s3.amazonaws.com/kick-off-s3'
     config.fog_public = false
     config.fog_provider = 'fog/aws'
     config.cache_storage = :fog
