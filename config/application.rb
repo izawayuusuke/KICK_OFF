@@ -9,7 +9,6 @@ Bundler.require(*Rails.groups)
 module KICKOff
   class Application < Rails::Application
     #言語ファイルを階層ごとに設定する
-    I18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     # アプリケーションが対応している言語のホワイトリスト
     I18n.config.available_locales = %i(ja en)
 
@@ -18,6 +17,7 @@ module KICKOff
 
     # デフォルト言語を日本語に設定
     I18n.default_locale = :ja
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
     config.time_zone = "Tokyo"
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

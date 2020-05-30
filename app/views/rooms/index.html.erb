@@ -12,11 +12,7 @@
               <%= other.user.name %>
             </li>
             <li>
-              <% if other.user.messages.present? %>
-                <%= other.user.messages.last.content %>
-              <% else %>
-                <%= current_user.messages.last.content %>
-              <% end %>
+              <%= other.room.messages.order(created_at: :desc).take.try(:content) %><br>
             </li>
         </ul>
       </div>
