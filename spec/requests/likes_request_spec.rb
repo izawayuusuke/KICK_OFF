@@ -16,6 +16,11 @@ RSpec.describe "Likes", type: :request do
         end.to change(Like, :count).by(1)
         expect(Like.find_by(user_id: user.id, post_id: test_post.id)).to_not eq nil
       end
+
+      it '投稿者に通知が送信される' do
+        post post_like_path(test_post), params: { like: { user_id: user.id, post_id: test_post.id } }, xhr: true
+        expect(Notification.find_by(visitor_id: user.id, visited_id: test_post.user_id, post_id: test_post.id, action: "like")).to_not eq nil
+      end
     end
 
     context 'ログインしていないとき' do

@@ -17,6 +17,11 @@ RSpec.describe "Comments", type: :request do
         expect(Comment.find_by(post_id: test_post.id)).to_not eq nil
       end
 
+      it '相手に通知の送信をする' do
+        post post_comments_path(test_post), params: { comment: FactoryBot.attributes_for(:comment) }
+        expect(Notification.find_by(visitor_id: user.id, visited_id: test_post.user_id, post_id: test_post.id, comment_id: Comment.last, action: 'comment', checked: false))
+      end
+
       it '投稿詳細にリダイレクトする' do
         post post_comments_path(test_post), params: { comment: FactoryBot.attributes_for(:comment) }
         expect(response).to redirect_to post_path(test_post)

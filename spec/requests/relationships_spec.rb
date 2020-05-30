@@ -15,6 +15,11 @@ RSpec.describe "Relationships", type: :request do
       end.to change(Relationship, :count).by(1)
       expect(Relationship.find_by(follower_id: user.id, followed_id: other_user.id)).to_not eq nil
     end
+
+    it '相手に通知が送信される' do
+      post relationships_path, params: { relationship: { follower_id: user.id, followed_id: other_user.id } }, xhr: true
+      expect(Notification.find_by(visitor_id: user.id, visited_id: other_user.id, action: "follow")).to_not eq nil
+    end
   end
 
   describe 'DELETE #destroy' do

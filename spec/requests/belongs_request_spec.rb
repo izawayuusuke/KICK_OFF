@@ -34,13 +34,15 @@ RSpec.describe "Belongs", type: :request do
           post player_belongs_path(player), params: { belong: { team_id: team.id } }
           expect(response.status).to eq 302
         end.to_not change(Belong, :count)
+        follow_redirect!
+        expect(response.body).to include "管理者権限がありません"
       end
     end
 
     context '既にチームに所属している場合' do
       let(:user) { create(:user) }
-      let(:player) { create(:player) }
-      let(:team) { create(:team) }
+      let!(:player) { create(:player) }
+      let!(:team) { create(:team) }
       let!(:belong) { create(:belong, player_id: player.id, team_id: team.id) }
       before do
         sign_in user
@@ -72,6 +74,11 @@ RSpec.describe "Belongs", type: :request do
           expect(response.status).to eq 302
         end.to change(Belong, :count).by(-1)
         expect(Belong.find_by(player_id: player.id, team_id: team.id)).to eq nil
+      end
+
+      it 'プレイヤー編集にリダイレクトする' do
+        delete team_belong_path(team, belong)
+        expect(response).to redirect_to edit_player_path(player)
       end
     end
 
