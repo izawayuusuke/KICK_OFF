@@ -1,4 +1,4 @@
-<% if Time.current.strftime("%Y%m").to_s > object.created_at.strftime("%Y%m") %>
+<% if Time.current.strftime("%Y%d%m").to_s > object.created_at.strftime("%Y%d%m") %>
   <%= object.created_at.strftime("%Y年%m月%d日") %>
 <% else %>
   <%= time_format(object.created_at) %>

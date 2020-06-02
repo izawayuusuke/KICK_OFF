@@ -43,7 +43,7 @@
       <div class="form-group">
         <%= f.fields_for :belongs do |belong| %>
           <%= belong.label :team_name %>
-          <%= belong.collection_select :team_id, Team.all, :id, :name %>
+          <%= belong.collection_select :team_id, Team.all.order(:name), :id, :name %>
         <% end %>
       </div>
     <% end %>
