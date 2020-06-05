@@ -41,5 +41,19 @@ RSpec.describe Player, type: :model do
         expect(player.valid?).to eq false
       end
     end
+
+    context 'dominant_foot' do
+      it 'presence true' do
+        player.dominant_foot = ''
+        expect(player.valid?).to eq false
+      end
+    end
+
+    context 'position' do
+      it 'presence true' do
+        player.position = ''
+        expect(player.valid?).to eq false
+      end
+    end
   end
 end

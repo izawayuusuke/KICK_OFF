@@ -13,6 +13,13 @@ RSpec.describe League, type: :model do
         expect(league.valid?).to eq false
       end
     end
+
+    context 'classification' do
+      it 'presence true' do
+        league.classification = ''
+        expect(league.valid?).to eq false
+      end
+    end
   end
 
   describe 'association' do

@@ -115,7 +115,7 @@ RSpec.describe "Users", type: :request do
   end
 
   describe 'DELETE #destroy' do
-    let(:user) { create(:user) }
+    let!(:user) { create(:user) }
     let!(:other_user) { create(:user) }
     context '管理者権限を持つとき' do
       before do
@@ -129,6 +129,13 @@ RSpec.describe "Users", type: :request do
           expect(response.status).to eq 302
         end.to change(User, :count).by(-1)
         expect(User.find_by(id: other_user.id)).to eq nil
+      end
+
+      it '自分を削除しようとした場合は削除に失敗する' do
+        expect do
+          delete user_path(user)
+        end.to_not change(User, :count)
+        expect(User.find_by(id: user.id)).to_not eq nil
       end
 
       it 'ユーザー一覧にリダイレクトする' do
