@@ -7,6 +7,7 @@ class RoomsController < ApplicationController
     @rooms.each do |room|
       @others += Entry.where(room_id: room.id).exclude(current_user.id)
     end
+    @others = Kaminari.paginate_array(@others).page(params[:page])
   end
 
   def show

@@ -3,7 +3,7 @@ class PlayersController < ApplicationController
   before_action :admin_user?, only: [:edit, :update]
 
   def index
-    @players = Player.search(params[:search]).order(:name).paginate(params, 20)
+    @players = Player.search(params[:search]).order(:name).paginate(params)
   end
 
   def show
@@ -21,7 +21,7 @@ class PlayersController < ApplicationController
       @team = Team.find(params[:team_id])
       set_position
       @discussion = Discussion.new
-      @discussions = @team.discussions.paginate(params, 20)
+      @discussions = @team.discussions.paginate(params)
       render "teams/show"
     end
   end

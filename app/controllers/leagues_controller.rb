@@ -65,7 +65,7 @@ class LeaguesController < ApplicationController
     def choose_league_class(classification)
       @leagues = League.where(classification: classification)
       @teams = Team.joins(:league)
-        .where(leagues: { classification: classification }).paginate(params, 20)
+        .where(leagues: { classification: classification }).paginate(params)
     end
 
     def league_params

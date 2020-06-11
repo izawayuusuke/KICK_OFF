@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user?, only: [:edit, :update]
 
   def index
-    @users = User.search(params[:search]).paginate(params, 20)
+    @users = User.search(params[:search]).paginate(params)
   end
 
   def show
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     @posts = Post.left_joins(:shares).where(shares: { user_id: @user.id })
               .or(
               Post.left_joins(:shares).where(user_id: @user.id))
-              .recent.paginate(params, 20)
+              .recent.paginate(params)
 
     # メッセージルームが既に作成されているか識別する
     @current_user_entry = Entry.where(user_id: current_user.id)
@@ -63,16 +63,16 @@ class UsersController < ApplicationController
   end
 
   def following
-    @following = @user.following.paginate(params, 20)
+    @following = @user.following.paginate(params)
   end
 
   def followers
-    @followers = @user.followers.paginate(params, 20)
+    @followers = @user.followers.paginate(params)
   end
 
   def likes
     @like_posts = Post.joins(:likes).where(likes: { user_id: @user.id })
-                  .recent.paginate(params, 20)
+                  .recent.paginate(params)
   end
 
   private

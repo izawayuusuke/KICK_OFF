@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 
     def all_leagues
       @leagues = League.all
-      @teams = Team.all.paginate(params, 20)
+      @teams = Team.all.paginate(params)
     end
 
     def set_position

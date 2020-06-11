@@ -3,6 +3,6 @@ class ApplicationRecord < ActiveRecord::Base
 
   scope :recent, -> { order(created_at: :desc) }
   scope :limited, -> { where(created_at: Time.current.prev_year..Time.current) }
-  scope :paginate, -> (params, i) { page(params[:page]).without_count.per(i) }
+  scope :paginate, -> (params) { page(params[:page]).without_count }
   scope :exclude, -> (current_user_id) { where.not(user_id: current_user_id) }
 end
